@@ -7,6 +7,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Created by spbw0-rep6 on 25.07.2016.
@@ -37,6 +40,15 @@ public class Calculator extends JFrame {
     text.setFont(font);
     text.setHorizontalAlignment(JTextField.RIGHT);
     text.setBorder(new LineBorder(Color.black, 1));
+    text.addKeyListener(new KeyAdapter() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            char c = e.getKeyChar();
+            if (!(Character.isDigit(c)) || (c == KeyEvent.VK_PERIOD) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)){
+            e.consume();
+    }
+        }
+    });
     panel.add (text);
     Border line = LineBorder.createBlackLineBorder();
     Border bevel = BorderFactory.createRaisedBevelBorder();
