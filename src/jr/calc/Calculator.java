@@ -56,6 +56,11 @@ public class Calculator extends JFrame {
     b9.setLocation(112, 72);
     b9.setBorder(compound);
     panel.add(b9);
+    division = new JButton("/");
+    division.setSize(45,40);
+    division.setLocation(162,72);
+    division.setBorder(compound);
+    panel.add(division);
     b4 = new JButton("4");
     b4.setSize(45,40);
     b4.setLocation(12, 118);
@@ -71,6 +76,11 @@ public class Calculator extends JFrame {
     b6.setLocation(112, 118);
     b6.setBorder(compound);
     panel.add(b6);
+    multiplication = new JButton("*");
+    multiplication.setSize(45,40);
+    multiplication.setLocation(162, 118);
+    multiplication.setBorder(compound);
+    panel.add(multiplication);
     b1 = new JButton("1");
     b1.setSize(45,40);
     b1.setLocation(12, 164);
@@ -96,6 +106,7 @@ public class Calculator extends JFrame {
     point.setLocation(112, 210);
     point.setBorder(compound);
     panel.add(point);
+
     }
 
 }
