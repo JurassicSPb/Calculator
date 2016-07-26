@@ -105,6 +105,7 @@ public class Calculator extends JFrame {
     multiplication.setLocation(162, 118);
     multiplication.setBorder(compound);
     panel.add(multiplication);
+    sqrt= new JButton("");
     b1 = new JButton("1");
     b1.setSize(45,40);
     b1.setLocation(12, 164);
@@ -142,6 +143,12 @@ public class Calculator extends JFrame {
     minus.setBorder(compound);
     minus.setFont(fontButton);
     panel.add(minus);
+    percent = new JButton("%");
+    percent.setSize(45,40);
+    percent.setLocation(212, 164);
+    percent.setBorder(compound);
+    percent.setFont(fontButton);
+    panel.add(percent);
     plus = new JButton("+");
     plus.setBackground(Color.CYAN);
     plus.setSize(45,40);
