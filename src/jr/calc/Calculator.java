@@ -32,11 +32,12 @@ public class Calculator extends JFrame {
     panel.setLayout(null);
     panel.setBorder(new LineBorder(Color.BLACK, 3));
     setContentPane(panel);
-    setSize(240, 330);
+    setSize(290, 300);
     text = new JTextField();
-    text.setSize(200, 50);
-    text.setLocation(17, 10);
+    text.setSize(191, 50);
+    text.setLocation(15, 12);
     Font font = new Font("SansSerif", Font.BOLD, 24);
+    Font fontButton = new Font("SansSerif", Font.BOLD, 19);
     text.setFont(font);
     text.setHorizontalAlignment(JTextField.RIGHT);
     text.setBorder(new LineBorder(Color.black, 1));
@@ -44,10 +45,11 @@ public class Calculator extends JFrame {
         @Override
         public void keyTyped(KeyEvent e) {
             char c = e.getKeyChar();
-            if (!(Character.isDigit(c)) || (c == KeyEvent.VK_PERIOD) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)){
-            e.consume();
+            if (!(Character.isDigit(c)) || (c == KeyEvent.VK_BACK_SPACE) ||
+                (c == KeyEvent.VK_DELETE) || (text.getText().length()>12)){
+                e.consume();
+            }
     }
-        }
     });
     panel.add (text);
     Border line = LineBorder.createBlackLineBorder();
@@ -57,31 +59,38 @@ public class Calculator extends JFrame {
     b7.setSize(45, 40);
     b7.setLocation(12, 72);
     b7.setBorder(compound);
+    b7.setFont(fontButton);
     panel.add(b7);
     b8 = new JButton("8");
     b8.setSize(45, 40);
     b8.setLocation(62, 72);
     b8.setBorder(compound);
+    b8.setFont(fontButton);
     panel.add(b8);
     b9 = new JButton("9");
     b9.setSize(45,40);
     b9.setLocation(112, 72);
     b9.setBorder(compound);
+    b9.setFont(fontButton);
     panel.add(b9);
     division = new JButton("/");
+    division.setBackground(Color.CYAN);
     division.setSize(45,40);
     division.setLocation(162,72);
     division.setBorder(compound);
+    division.setFont(fontButton);
     panel.add(division);
     b4 = new JButton("4");
     b4.setSize(45,40);
     b4.setLocation(12, 118);
     b4.setBorder(compound);
+    b4.setFont(fontButton);
     panel.add(b4);
     b5 = new JButton("5");
     b5.setSize(45,40);
     b5.setLocation(62, 118);
     b5.setBorder(compound);
+    b5.setFont(fontButton);
     panel.add(b5);
     b6 = new JButton("6");
     b6.setSize(45,40);
@@ -89,6 +98,7 @@ public class Calculator extends JFrame {
     b6.setBorder(compound);
     panel.add(b6);
     multiplication = new JButton("*");
+    multiplication.setBackground(Color.CYAN);
     multiplication.setSize(45,40);
     multiplication.setLocation(162, 118);
     multiplication.setBorder(compound);
@@ -118,6 +128,25 @@ public class Calculator extends JFrame {
     point.setLocation(112, 210);
     point.setBorder(compound);
     panel.add(point);
+    minus = new JButton("-");
+    minus.setBackground(Color.CYAN);
+    minus.setSize(45,40);
+    minus.setLocation(162, 164);
+    minus.setBorder(compound);
+    panel.add(minus);
+    plus = new JButton("+");
+    plus.setBackground(Color.CYAN);
+    plus.setSize(45,40);
+    plus.setLocation(162, 210);
+    plus.setBorder(compound);
+    panel.add(plus);
+    equal = new JButton("=");
+    equal.setBackground(Color.CYAN);
+    equal.setSize(45,40);
+    equal.setLocation(212, 210);
+    equal.setBorder(compound);
+    panel.add(equal);
+
 
     }
 
