@@ -56,6 +56,12 @@ public class Calculator extends JFrame {
     Border line = LineBorder.createBlackLineBorder();
     Border bevel = BorderFactory.createRaisedBevelBorder();
     Border compound = new CompoundBorder(bevel, line);
+    ce = new JButton("C");
+    ce.setSize(45, 50);
+    ce.setLocation(212, 12);
+    ce.setBorder(compound);
+    ce.setFont(fontButton);
+    panel.add(ce);
     b7 = new JButton("7");
     b7.setSize(45, 40);
     b7.setLocation(12, 72);
@@ -81,6 +87,12 @@ public class Calculator extends JFrame {
     division.setBorder(compound);
     division.setFont(fontButton);
     panel.add(division);
+    negative = new JButton("±");
+    negative.setSize(45,40);
+    negative.setLocation(212,72);
+    negative.setBorder(compound);
+    negative.setFont(fontButton);
+    panel.add(negative);
     b4 = new JButton("4");
     b4.setSize(45,40);
     b4.setLocation(12, 118);
@@ -105,7 +117,11 @@ public class Calculator extends JFrame {
     multiplication.setLocation(162, 118);
     multiplication.setBorder(compound);
     panel.add(multiplication);
-    sqrt= new JButton("");
+    sqrt= new JButton("√");
+    sqrt.setSize(45,40);
+    sqrt.setLocation(212, 118);
+    sqrt.setBorder(compound);
+    panel.add(sqrt);
     b1 = new JButton("1");
     b1.setSize(45,40);
     b1.setLocation(12, 164);
