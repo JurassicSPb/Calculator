@@ -15,7 +15,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JPanel panel;
     private JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0;
     private JButton plus, minus, multiplication, division, equal;
-    private JButton point, sqrt, percent, negative;
+    private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
 
@@ -89,7 +89,7 @@ public class Calculator extends JFrame implements ActionListener{
         negative.setFont(fontButton);
         panel.add(negative);
         ce = new JButton("C");
-        ce.setSize(45, 40);
+        ce.setSize(45, 85);
         ce.setLocation(262, 72);
         ce.setBorder(compound);
         ce.setFont(fontButton);
@@ -168,6 +168,12 @@ public class Calculator extends JFrame implements ActionListener{
         percent.setBorder(compound);
         percent.setFont(fontButton);
         panel.add(percent);
+        backspace = new JButton("←");
+        backspace.setSize(45, 40);
+        backspace.setLocation(262,164);
+        backspace.setBorder(compound);
+        backspace.setFont(fontButton);
+        panel.add(backspace);
         plus = new JButton("+");
         plus.setBackground(Color.CYAN);
         plus.setSize(45, 40);
