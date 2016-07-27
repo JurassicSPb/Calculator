@@ -28,10 +28,10 @@ public class Calculator extends JFrame implements ActionListener{
         panel.setLayout(null);
         panel.setFocusable(true);
         setContentPane(panel);
-        setSize(276, 292);
+        setSize(323, 292);
         setResizable(false);
         text = new JTextField();
-        text.setSize(192, 50);
+        text.setSize(291, 50);
         text.setLocation(15, 12);
         Font font = new Font("SansSerif", Font.BOLD, 24);
         Font fontButton = new Font("SansSerif", Font.BOLD, 19);
@@ -42,6 +42,14 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 e.consume();
+                panel.requestFocus();
+            }
+        });
+        text.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent m) {
+                m.consume();
+                panel.requestFocus();
             }
         });
         panel.add(text);
@@ -49,12 +57,6 @@ public class Calculator extends JFrame implements ActionListener{
         Border bevel = BorderFactory.createRaisedBevelBorder();
         Border compound = new CompoundBorder(bevel, line);
         Border lowered = new SoftBevelBorder(BevelBorder.LOWERED);
-        ce = new JButton("C");
-        ce.setSize(45, 50);
-        ce.setLocation(212, 12);
-        ce.setBorder(compound);
-        ce.setFont(fontButton);
-        panel.add(ce);
         b7 = new JButton("7");
         b7.setSize(45, 40);
         b7.setLocation(12, 72);
@@ -86,6 +88,13 @@ public class Calculator extends JFrame implements ActionListener{
         negative.setBorder(compound);
         negative.setFont(fontButton);
         panel.add(negative);
+        ce = new JButton("C");
+        ce.setSize(45, 40);
+        ce.setLocation(262, 72);
+        ce.setBorder(compound);
+        ce.setFont(fontButton);
+        ce.setBackground(Color.ORANGE);
+        panel.add(ce);
         b4 = new JButton("4");
         b4.setSize(45, 40);
         b4.setLocation(12, 118);
@@ -168,7 +177,7 @@ public class Calculator extends JFrame implements ActionListener{
         panel.add(plus);
         equal = new JButton("=");
         equal.setBackground(Color.CYAN);
-        equal.setSize(45, 40);
+        equal.setSize(95, 40);
         equal.setLocation(212, 210);
         equal.setBorder(compound);
         equal.setFont(fontButton);
@@ -177,7 +186,7 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if (text.getText().length()<13) {
+                if (text.getText().length()<18) {
                     if (c == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
                         text.setText(text.getText() + "1");
@@ -198,10 +207,12 @@ public class Calculator extends JFrame implements ActionListener{
             }
         });
     }
-            public void actionPerformed (ActionEvent e){
-                if (e.getSource().equals(b1) && text.getText().length()<13) {
-                    text.setText(text.getText() + "1");
-                    panel.requestFocus();
+            public void actionPerformed (ActionEvent e) {
+                if (text.getText().length() < 18) {
+                    if (e.getSource().equals(b1)) {
+                        text.setText(text.getText() + "1");
+                        panel.requestFocus();
+                    }
                 }
             }
 
