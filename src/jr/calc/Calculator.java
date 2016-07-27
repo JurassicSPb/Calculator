@@ -11,8 +11,7 @@ import java.awt.event.*;
 /**
  * Created by spbw0-rep6 on 25.07.2016.
  */
-public class Calculator extends JFrame {
-//    implements ActionListener.
+public class Calculator extends JFrame implements ActionListener, KeyListener{
     private JPanel panel;
     private JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0;
     private JButton plus, minus, multiplication, division, equal;
@@ -31,6 +30,7 @@ public class Calculator extends JFrame {
         setContentPane(panel);
         setSize(276, 292);
         setResizable(false);
+        addKeyListener(this);
         text = new JTextField();
         text.setSize(192, 50);
         text.setLocation(15, 12);
@@ -120,6 +120,7 @@ public class Calculator extends JFrame {
         b1.setLocation(12, 164);
         b1.setBorder(compound);
         b1.setFont(fontButton);
+        b1.addActionListener(this);
         panel.add(b1);
         b2 = new JButton("2");
         b2.setSize(45, 40);
@@ -172,27 +173,34 @@ public class Calculator extends JFrame {
         equal.setBorder(compound);
         equal.setFont(fontButton);
         panel.add(equal);
-        b1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (text.getText().length()<13) {
+    }
+//        b1.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyTyped (KeyEvent e) {
+//                String i= "1";
+//                char c = e.getKeyChar();
+//                if (text.getText().length()<13 || c==KeyEvent.VK_1)
+//                {
+//                    text.setText(i+"1");
+//                }
+//            }
+//        });
+            public void actionPerformed (ActionEvent e){
+                if (e.getSource().equals(b1) && text.getText().length()<13) {
                     text.setText(text.getText() + "1");
-
                 }
             }
-        });
-        b1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped (KeyEvent e) {
-                String i= "1";
-                char c = e.getKeyChar();
-                if (text.getText().length()<13 || c==KeyEvent.VK_1)
-                {
-                    text.setText(i+"1");
-                }
-            }
-        });
-
+    public void keyPressed(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) {
+        int c = e.getKeyCode();
+        if (text.getText().length() < 13 && c == KeyEvent.VK_1) {
+            b1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED));
+            text.setText(text.getText() + "1");
+        }
     }
 
+
+
 }
+

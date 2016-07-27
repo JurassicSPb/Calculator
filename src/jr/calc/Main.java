@@ -10,5 +10,6 @@ public class Main {
         Calculator calc = new Calculator("Калькулятор");
         calc.setVisible(true);
 
+
     }
 }
