@@ -26,7 +26,6 @@ public class Calculator extends JFrame implements ActionListener{
         setDefaultLookAndFeelDecorated(true);
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(Color.BLACK, 3));
         panel.setFocusable(true);
         setContentPane(panel);
         setSize(276, 292);
@@ -49,6 +48,7 @@ public class Calculator extends JFrame implements ActionListener{
         Border line = LineBorder.createBlackLineBorder();
         Border bevel = BorderFactory.createRaisedBevelBorder();
         Border compound = new CompoundBorder(bevel, line);
+        Border lowered = new SoftBevelBorder(BevelBorder.LOWERED);
         ce = new JButton("C");
         ce.setSize(45, 50);
         ce.setLocation(212, 12);
@@ -173,15 +173,52 @@ public class Calculator extends JFrame implements ActionListener{
         equal.setBorder(compound);
         equal.setFont(fontButton);
         panel.add(equal);
-            panel.addKeyListener(new KeyAdapter() {
+//            panel.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyTyped (KeyEvent e) {
+//                char c = e.getKeyChar();
+//                if (text.getText().length()<13)
+//                {
+//                    if (c==KeyEvent.VK_1) {
+//                        b1.setBorder(lowered);
+//                        text.setText(text.getText() + "1");
+//                    }
+//                    else if (c==KeyEvent.VK_2){
+//
+//                        b2.setBorder(lowered);
+//                        text.setText(text.getText() + "2");
+//                    }
+//                }
+//
+//            }
+//        });
+        panel.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped (KeyEvent e) {
+            public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if (text.getText().length()<13 && c==KeyEvent.VK_1)
-                {
-                    b1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED));
-                    text.setText(text.getText() + "1");
+                if (text.getText().length()<13) {
+                    if (c == KeyEvent.VK_1) {
+                        b1.setBorder(lowered);
+                        text.setText(text.getText() + "1");
+                    }
+                    else if (c==KeyEvent.VK_2){
+                        b2.setBorder(lowered);
+                        text.setText(text.getText() + "2");
+                    }
+
                 }
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                b1.setBorder(compound);
+                b2.setBorder(compound);
             }
         });
     }
@@ -190,7 +227,7 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText(text.getText() + "1");
                 }
             }
-    
+
 
 }
 
