@@ -197,9 +197,41 @@ public class Calculator extends JFrame implements ActionListener{
                         b1.setBorder(lowered);
                         text.setText(text.getText() + "1");
                     }
-                    else if (c==KeyEvent.VK_2){
+                    if (c==KeyEvent.VK_2){
                         b2.setBorder(lowered);
                         text.setText(text.getText() + "2");
+                    }
+                    if (c==KeyEvent.VK_3){
+                        b3.setBorder(lowered);
+                        text.setText(text.getText() + "3");
+                    }
+                    if (c==KeyEvent.VK_4){
+                        b4.setBorder(lowered);
+                        text.setText(text.getText() + "4");
+                    }
+                    if (c==KeyEvent.VK_5){
+                        b5.setBorder(lowered);
+                        text.setText(text.getText() + "5");
+                    }
+                    if (c==KeyEvent.VK_6){
+                        b6.setBorder(lowered);
+                        text.setText(text.getText() + "6");
+                    }
+                    if (c==KeyEvent.VK_7){
+                        b7.setBorder(lowered);
+                        text.setText(text.getText() + "7");
+                    }
+                    if (c==KeyEvent.VK_8){
+                        b8.setBorder(lowered);
+                        text.setText(text.getText() + "8");
+                    }
+                    if (c==KeyEvent.VK_9){
+                        b9.setBorder(lowered);
+                        text.setText(text.getText() + "9");
+                    }
+                    if (c==KeyEvent.VK_0){
+                        b0.setBorder(lowered);
+                        text.setText(text.getText() + "0");
                     }
                 }
             }
@@ -210,6 +242,14 @@ public class Calculator extends JFrame implements ActionListener{
             public void keyReleased(KeyEvent e) {
                 b1.setBorder(compound);
                 b2.setBorder(compound);
+                b3.setBorder(compound);
+                b4.setBorder(compound);
+                b5.setBorder(compound);
+                b6.setBorder(compound);
+                b7.setBorder(compound);
+                b8.setBorder(compound);
+                b9.setBorder(compound);
+                b0.setBorder(compound);
             }
         });
     }
