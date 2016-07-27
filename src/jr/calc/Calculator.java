@@ -28,7 +28,7 @@ public class Calculator extends JFrame implements ActionListener{
         panel.setLayout(null);
         panel.setFocusable(true);
         setContentPane(panel);
-        setSize(323, 292);
+        setSize(326, 292);
         setResizable(false);
         text = new JTextField();
         text.setSize(291, 50);
