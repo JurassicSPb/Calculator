@@ -173,25 +173,6 @@ public class Calculator extends JFrame implements ActionListener{
         equal.setBorder(compound);
         equal.setFont(fontButton);
         panel.add(equal);
-//            panel.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyTyped (KeyEvent e) {
-//                char c = e.getKeyChar();
-//                if (text.getText().length()<13)
-//                {
-//                    if (c==KeyEvent.VK_1) {
-//                        b1.setBorder(lowered);
-//                        text.setText(text.getText() + "1");
-//                    }
-//                    else if (c==KeyEvent.VK_2){
-//
-//                        b2.setBorder(lowered);
-//                        text.setText(text.getText() + "2");
-//                    }
-//                }
-//
-//            }
-//        });
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -205,15 +186,10 @@ public class Calculator extends JFrame implements ActionListener{
                         b2.setBorder(lowered);
                         text.setText(text.getText() + "2");
                     }
-
                 }
-
             }
-
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
+            public void keyPressed(KeyEvent e) {}
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -225,6 +201,7 @@ public class Calculator extends JFrame implements ActionListener{
             public void actionPerformed (ActionEvent e){
                 if (e.getSource().equals(b1) && text.getText().length()<13) {
                     text.setText(text.getText() + "1");
+                    panel.requestFocus();
                 }
             }
 
