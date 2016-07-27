@@ -31,7 +31,6 @@ public class Calculator extends JFrame implements ActionListener{
         setContentPane(panel);
         setSize(276, 292);
         setResizable(false);
-//        addKeyListener(this);
         text = new JTextField();
         text.setSize(192, 50);
         text.setLocation(15, 12);
@@ -180,8 +179,8 @@ public class Calculator extends JFrame implements ActionListener{
                 char c = e.getKeyChar();
                 if (text.getText().length()<13 && c==KeyEvent.VK_1)
                 {
+                    b1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED));
                     text.setText(text.getText() + "1");
-                    panel.setFocusable(true);
                 }
             }
         });
@@ -191,17 +190,7 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText(text.getText() + "1");
                 }
             }
-//    public void keyPressed(KeyEvent e) {}
-//    public void keyReleased(KeyEvent e) { }
-//    public void keyTyped(KeyEvent e) {
-//        int c = e.getKeyCode();
-//        if (text.getText().length() < 13 && c == KeyEvent.VK_1) {
-//            b1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED));
-//            text.setText(text.getText() + "1");
-//        }
-//    }
-
-
+    
 
 }
 
