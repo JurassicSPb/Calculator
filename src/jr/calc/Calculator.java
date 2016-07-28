@@ -314,7 +314,7 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(backspace) && text.getText().length()!=0){
-                        text.setText(text.getText().substring(0, text.getText().length() - 2));
+                        text.setText(text.getText().substring(0, text.getText().length() - 1));
                         panel.requestFocus();
 
                     }
