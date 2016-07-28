@@ -62,18 +62,21 @@ public class Calculator extends JFrame implements ActionListener{
         b7.setLocation(12, 72);
         b7.setBorder(compound);
         b7.setFont(fontButton);
+        b7.addActionListener(this);
         panel.add(b7);
         b8 = new JButton("8");
         b8.setSize(45, 40);
         b8.setLocation(62, 72);
         b8.setBorder(compound);
         b8.setFont(fontButton);
+        b8.addActionListener(this);
         panel.add(b8);
         b9 = new JButton("9");
         b9.setSize(45, 40);
         b9.setLocation(112, 72);
         b9.setBorder(compound);
         b9.setFont(fontButton);
+        b9.addActionListener(this);
         panel.add(b9);
         division = new JButton("/");
         division.setBackground(Color.CYAN);
@@ -100,18 +103,21 @@ public class Calculator extends JFrame implements ActionListener{
         b4.setLocation(12, 118);
         b4.setBorder(compound);
         b4.setFont(fontButton);
+        b4.addActionListener(this);
         panel.add(b4);
         b5 = new JButton("5");
         b5.setSize(45, 40);
         b5.setLocation(62, 118);
         b5.setBorder(compound);
         b5.setFont(fontButton);
+        b5.addActionListener(this);
         panel.add(b5);
         b6 = new JButton("6");
         b6.setSize(45, 40);
         b6.setLocation(112, 118);
         b6.setBorder(compound);
         b6.setFont(fontButton);
+        b6.addActionListener(this);
         panel.add(b6);
         multiplication = new JButton("*");
         multiplication.setBackground(Color.CYAN);
@@ -136,18 +142,21 @@ public class Calculator extends JFrame implements ActionListener{
         b2.setLocation(62, 164);
         b2.setBorder(compound);
         b2.setFont(fontButton);
+        b2.addActionListener(this);
         panel.add(b2);
         b3 = new JButton("3");
         b3.setSize(45, 40);
         b3.setLocation(112, 164);
         b3.setBorder(compound);
         b3.setFont(fontButton);
+        b3.addActionListener(this);
         panel.add(b3);
         b0 = new JButton("0");
         b0.setSize(95, 40);
         b0.setLocation(12, 210);
         b0.setBorder(compound);
         b0.setFont(fontButton);
+        b0.addActionListener(this);
         panel.add(b0);
         point = new JButton(",");
         point.setSize(45, 40);
@@ -173,6 +182,7 @@ public class Calculator extends JFrame implements ActionListener{
         backspace.setLocation(262,164);
         backspace.setBorder(compound);
         backspace.setFont(fontButton);
+        backspace.addActionListener(this);
         panel.add(backspace);
         plus = new JButton("+");
         plus.setBackground(Color.CYAN);
@@ -233,6 +243,10 @@ public class Calculator extends JFrame implements ActionListener{
                         b0.setBorder(lowered);
                         text.setText(text.getText() + "0");
                     }
+                    if (c==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
+                        backspace.setBorder(lowered);
+                        text.setText(text.getText().substring(0, text.getText().length()-1));
+                    }
                 }
             }
             @Override
@@ -250,14 +264,59 @@ public class Calculator extends JFrame implements ActionListener{
                 b8.setBorder(compound);
                 b9.setBorder(compound);
                 b0.setBorder(compound);
+                backspace.setBorder(compound);
             }
         });
     }
             public void actionPerformed (ActionEvent e) {
+                if (text.getText().length()==0){
+                    panel.requestFocus();
+                }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
                         text.setText(text.getText() + "1");
                         panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b2)) {
+                        text.setText(text.getText() + "2");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b3)) {
+                        text.setText(text.getText() + "3");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b4)) {
+                        text.setText(text.getText() + "4");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b5)) {
+                        text.setText(text.getText() + "5");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b6)) {
+                        text.setText(text.getText() + "6");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b7)) {
+                        text.setText(text.getText() + "7");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b8)) {
+                        text.setText(text.getText() + "8");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b9)) {
+                        text.setText(text.getText() + "9");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(b0)) {
+                        text.setText(text.getText() + "0");
+                        panel.requestFocus();
+                    }
+                    if (e.getSource().equals(backspace)){
+                        text.setText(text.getText().substring(0, text.getText().length() - 1));
+                        panel.requestFocus();
+
                     }
                 }
             }
