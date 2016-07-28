@@ -19,6 +19,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JButton ce;
     private JTextField text;
 
+
     public Calculator (String s) {
         super(s);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +53,7 @@ public class Calculator extends JFrame implements ActionListener{
                 panel.requestFocus();
             }
         });
+        text.setBackground(Color.WHITE);
         panel.add(text);
         Border line = LineBorder.createBlackLineBorder();
         Border bevel = BorderFactory.createRaisedBevelBorder();
@@ -214,43 +216,43 @@ public class Calculator extends JFrame implements ActionListener{
                 if (text.getText().length()<18) {
                     if (c == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
-                        text.setText(text.getText() + "1");
+                        text.setText(text.getText() + 1);
                     }
                     if (c==KeyEvent.VK_2){
                         b2.setBorder(lowered);
-                        text.setText(text.getText() + "2");
+                        text.setText(text.getText() + 2);
                     }
                     if (c==KeyEvent.VK_3){
                         b3.setBorder(lowered);
-                        text.setText(text.getText() + "3");
+                        text.setText(text.getText() + 3);
                     }
                     if (c==KeyEvent.VK_4){
                         b4.setBorder(lowered);
-                        text.setText(text.getText() + "4");
+                        text.setText(text.getText() + 4);
                     }
                     if (c==KeyEvent.VK_5){
                         b5.setBorder(lowered);
-                        text.setText(text.getText() + "5");
+                        text.setText(text.getText() + 5);
                     }
                     if (c==KeyEvent.VK_6){
                         b6.setBorder(lowered);
-                        text.setText(text.getText() + "6");
+                        text.setText(text.getText() + 6);
                     }
                     if (c==KeyEvent.VK_7){
                         b7.setBorder(lowered);
-                        text.setText(text.getText() + "7");
+                        text.setText(text.getText() + 7);
                     }
                     if (c==KeyEvent.VK_8){
                         b8.setBorder(lowered);
-                        text.setText(text.getText() + "8");
+                        text.setText(text.getText() + 8);
                     }
                     if (c==KeyEvent.VK_9){
                         b9.setBorder(lowered);
-                        text.setText(text.getText() + "9");
+                        text.setText(text.getText() + 9);
                     }
                     if (c==KeyEvent.VK_0){
                         b0.setBorder(lowered);
-                        text.setText(text.getText() + "0");
+                        text.setText(text.getText() + 0);
                     }
                 }
             }
@@ -288,48 +290,53 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
-                        text.setText(text.getText() + "1");
+                        text.setText(text.getText() + 1);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b2)) {
-                        text.setText(text.getText() + "2");
+                        text.setText(text.getText() + 2);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b3)) {
-                        text.setText(text.getText() + "3");
+                        text.setText(text.getText() + 3);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b4)) {
-                        text.setText(text.getText() + "4");
+                        text.setText(text.getText() + 4);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b5)) {
-                        text.setText(text.getText() + "5");
+                        text.setText(text.getText() + 5);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b6)) {
-                        text.setText(text.getText() + "6");
+                        text.setText(text.getText() + 6);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b7)) {
-                        text.setText(text.getText() + "7");
+                        text.setText(text.getText() + 7);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b8)) {
-                        text.setText(text.getText() + "8");
+                        text.setText(text.getText() + 8);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b9)) {
-                        text.setText(text.getText() + "9");
+                        text.setText(text.getText() + 9);
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b0)) {
-                        text.setText(text.getText() + "0");
+                        text.setText(text.getText() + 0);
                         panel.requestFocus();
+                    }
+                    if (e.getSource().equals(point)){
+
                     }
                 }
             }
-
+                public void setD (){
+                        Double doub = Double.parseDouble(text.getText());
+                }
 
 }
 
