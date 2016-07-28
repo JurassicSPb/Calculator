@@ -330,13 +330,11 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point)){
-
+                        Double doub = Double.parseDouble(text.getText());
+                        text.setText(doub.toString());
                     }
                 }
             }
-                public void setD (){
-                        Double doub = Double.parseDouble(text.getText());
-                }
 
 }
 
