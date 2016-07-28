@@ -269,7 +269,7 @@ public class Calculator extends JFrame implements ActionListener{
         });
     }
             public void actionPerformed (ActionEvent e) {
-                if (text.getText().length()==0){
+                if (text.getText().length()==0 || text.getText().length()>=18){
                     panel.requestFocus();
                 }
                 if (text.getText().length() < 18) {
@@ -313,8 +313,8 @@ public class Calculator extends JFrame implements ActionListener{
                         text.setText(text.getText() + "0");
                         panel.requestFocus();
                     }
-                    if (e.getSource().equals(backspace)){
-                        text.setText(text.getText().substring(0, text.getText().length() - 1));
+                    if (e.getSource().equals(backspace) && text.getText().length()!=0){
+                        text.setText(text.getText().substring(0, text.getText().length() - 2));
                         panel.requestFocus();
 
                     }
