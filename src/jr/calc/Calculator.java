@@ -97,6 +97,7 @@ public class Calculator extends JFrame implements ActionListener{
         ce.setBorder(compound);
         ce.setFont(fontButton);
         ce.setBackground(Color.ORANGE);
+        ce.addActionListener(this);
         panel.add(ce);
         b4 = new JButton("4");
         b4.setSize(45, 40);
@@ -202,6 +203,14 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
+                if (c==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
+                    backspace.setBorder(lowered);
+                    text.setText(text.getText().substring(0, text.getText().length()-1));
+                }
+                if (c==KeyEvent.VK_ESCAPE && text.getText().length()!=0){
+                    ce.setBorder(lowered);
+                    text.setText("");
+                }
                 if (text.getText().length()<18) {
                     if (c == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
@@ -243,10 +252,6 @@ public class Calculator extends JFrame implements ActionListener{
                         b0.setBorder(lowered);
                         text.setText(text.getText() + "0");
                     }
-                    if (c==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
-                        backspace.setBorder(lowered);
-                        text.setText(text.getText().substring(0, text.getText().length()-1));
-                    }
                 }
             }
             @Override
@@ -265,11 +270,20 @@ public class Calculator extends JFrame implements ActionListener{
                 b9.setBorder(compound);
                 b0.setBorder(compound);
                 backspace.setBorder(compound);
+                ce.setBorder(compound);
             }
         });
     }
             public void actionPerformed (ActionEvent e) {
                 if (text.getText().length()==0 || text.getText().length()>=18){
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(backspace) && text.getText().length()!=0){
+                    text.setText(text.getText().substring(0, text.getText().length()-1));
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(ce)){
+                    text.setText("");
                     panel.requestFocus();
                 }
                 if (text.getText().length() < 18) {
@@ -312,11 +326,6 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b0)) {
                         text.setText(text.getText() + "0");
                         panel.requestFocus();
-                    }
-                    if (e.getSource().equals(backspace) && text.getText().length()!=0){
-                        text.setText(text.getText().substring(0, text.getText().length() - 1));
-                        panel.requestFocus();
-
                     }
                 }
             }
