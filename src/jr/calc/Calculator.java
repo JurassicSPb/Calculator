@@ -18,7 +18,8 @@ public class Calculator extends JFrame implements ActionListener{
     private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
-    private int firstValue ;
+    private int firstIntValue ;
+    private int FirstDoubleValue;
     private String operation;
     private String str1 = ".";
 
@@ -308,7 +309,7 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(plus)){
-                    firstValue = Integer.valueOf(text.getText());
+                    firstIntValue = Integer.valueOf(text.getText());
                     text.setText("");
                     operation = "+";
                     if (text.getText().indexOf(str1)==1 && text.getText().length()!=0){
@@ -317,11 +318,11 @@ public class Calculator extends JFrame implements ActionListener{
                         // else setInt
                 }
                 if (e.getSource().equals((equal))){
-                    int secondValue = Integer.valueOf(text.getText());
+                    int secondIntValue = Integer.valueOf(text.getText());
                     if("+".equals(operation)){
-                        text.setText((firstValue+secondValue)+"");
+                        text.setText((firstIntValue+secondIntValue)+"");
                     }
-                    firstValue = 0;
+                    firstIntValue = 0;
                     operation = "";
                 }
 
