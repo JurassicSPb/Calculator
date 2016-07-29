@@ -255,6 +255,17 @@ public class Calculator extends JFrame implements ActionListener{
                         b0.setBorder(lowered);
                         text.setText(text.getText() + "0");
                     }
+                    if (c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_QUOTE){
+                        if ( (text.getText().length()!=0)) {
+                            String str1 = ".";
+                            if (text.getText().indexOf(str1) >= 1) {
+                                return;
+                            } else {
+                                b0.setBorder(lowered);
+                                text.setText(text.getText() + str1);
+                            }
+                        }
+                    }
                 }
             }
             @Override
@@ -341,13 +352,11 @@ public class Calculator extends JFrame implements ActionListener{
                             text.setText(text.getText() + str1);
                             panel.requestFocus();
                         }
-
-//                        Double doub = Double.parseDouble(text.getText());
-//                        text.setText(doub.toString());
                     }
                 }
             }
-
+//                        Double doub = Double.parseDouble(text.getText());
+//                        text.setText(doub.toString());
 
 }
 
