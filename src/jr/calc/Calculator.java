@@ -18,8 +18,8 @@ public class Calculator extends JFrame implements ActionListener{
     private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
-    private double firstValue;
-    private double secondValue;
+    private int firstValue = 0;
+    private String operation = "+";
     private String str1 = ".";
 
 
@@ -206,6 +206,7 @@ public class Calculator extends JFrame implements ActionListener{
         equal.setLocation(212, 210);
         equal.setBorder(compound);
         equal.setFont(fontButton);
+        equal.addActionListener(this);
         panel.add(equal);
         panel.addKeyListener(new KeyListener() {
             @Override
@@ -307,14 +308,22 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(plus)){
-                    firstValue= Double.valueOf(text.getText());
+                    firstValue = Integer.valueOf(text.getText());
                     text.setText("");
-                    setDouble();
+                    operation = "+";
                     if (text.getText().indexOf(str1)==1 && text.getText().length()!=0){
                             setDouble();
                     }
                         // else setInt
                 }
+                if (e.getSource().equals((equal))){
+                    int secondValue = Integer.valueOf(text.getText());
+                    if("+".equals(operation)){
+                        text.setText((firstValue+secondValue)+"");
+                    }
+                }
+                firstValue = 0;
+                operation = "+";
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
                         text.setText(text.getText() + "1");
@@ -371,7 +380,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
             }
                 public void setDouble (){
-                    secondValue = Double.valueOf(text.getText());
+
                     }
 
                 public void setInt (int x){
