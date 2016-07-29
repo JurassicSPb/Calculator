@@ -18,6 +18,10 @@ public class Calculator extends JFrame implements ActionListener{
     private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
+    private double firstValue;
+    private double secondValue;
+    private String str1 = ".";
+
 
 
     public Calculator (String s) {
@@ -194,6 +198,7 @@ public class Calculator extends JFrame implements ActionListener{
         plus.setLocation(162, 210);
         plus.setBorder(compound);
         plus.setFont(fontButton);
+        plus.addActionListener(this);
         panel.add(plus);
         equal = new JButton("=");
         equal.setBackground(Color.CYAN);
@@ -301,6 +306,15 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText("");
                     panel.requestFocus();
                 }
+                if (e.getSource().equals(plus)){
+                    firstValue= Double.valueOf(text.getText());
+                    text.setText("");
+                    setDouble();
+                    if (text.getText().indexOf(str1)==1 && text.getText().length()!=0){
+                            setDouble();
+                    }
+                        // else setInt
+                }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
                         text.setText(text.getText() + "1");
@@ -343,10 +357,10 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point) && text.getText().length()!=0){
-                        String str1 = ".";
                         if (text.getText().indexOf(str1)>=1)
                         {
-                                return;
+                            panel.requestFocus();
+                            return;
                         }
                         else
                         {
@@ -356,8 +370,14 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                 }
             }
-//                        Double doub = Double.parseDouble(text.getText());
-//                        text.setText(doub.toString());
+                public void setDouble (){
+                    secondValue = Double.valueOf(text.getText());
+                    }
+
+                public void setInt (int x){
+
+                }
+
 
 }
 
