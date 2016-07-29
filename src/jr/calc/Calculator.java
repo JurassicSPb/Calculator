@@ -261,7 +261,7 @@ public class Calculator extends JFrame implements ActionListener{
                             if (text.getText().indexOf(str1) >= 1) {
                                 return;
                             } else {
-                                b0.setBorder(lowered);
+                                point.setBorder(lowered);
                                 text.setText(text.getText() + str1);
                             }
                         }
@@ -285,6 +285,7 @@ public class Calculator extends JFrame implements ActionListener{
                 b0.setBorder(compound);
                 backspace.setBorder(compound);
                 ce.setBorder(compound);
+                point.setBorder(compound);
             }
         });
     }
