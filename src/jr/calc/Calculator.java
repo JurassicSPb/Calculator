@@ -166,6 +166,7 @@ public class Calculator extends JFrame implements ActionListener{
         point.setLocation(112, 210);
         point.setBorder(compound);
         point.setFont(fontButton);
+        point.addActionListener(this);
         panel.add(point);
         minus = new JButton("-");
         minus.setBackground(Color.CYAN);
@@ -329,12 +330,24 @@ public class Calculator extends JFrame implements ActionListener{
                         text.setText(text.getText() + "0");
                         panel.requestFocus();
                     }
-                    if (e.getSource().equals(point)){
-                        Double doub = Double.parseDouble(text.getText());
-                        text.setText(doub.toString());
+                    if (e.getSource().equals(point) && text.getText().length()!=0){
+                        String str1 = ".";
+                        if (text.getText().indexOf(str1)>=1)
+                        {
+                                return;
+                        }
+                        else
+                        {
+                            text.setText(text.getText() + str1);
+                            panel.requestFocus();
+                        }
+
+//                        Double doub = Double.parseDouble(text.getText());
+//                        text.setText(doub.toString());
                     }
                 }
             }
+
 
 }
 
