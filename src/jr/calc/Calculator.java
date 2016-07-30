@@ -284,7 +284,9 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     if (c==KeyEvent.VK_0){
                         b0.setBorder(lowered);
-                        text.setText(text.getText() + "0");
+                        if (text.getText().length()<1) {
+                            text.setText(text.getText() + "0");
+                        }
                     }
                     if (c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_QUOTE){
                         if ( (text.getText().length()!=0)) {
