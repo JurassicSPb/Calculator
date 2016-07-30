@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Arc2D;
 
 /**
  * Created by spbw0-rep6 on 25.07.2016.
@@ -18,9 +19,8 @@ public class Calculator extends JFrame implements ActionListener{
     private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
-    private int firstIntValue ;
-    private int FirstDoubleValue;
-    private String operation;
+    private static double a=0, b=0, result=0;
+    private static int operator=0;
     private String str1 = ".";
 
 
@@ -309,23 +309,24 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(plus)){
-                    firstIntValue = Integer.valueOf(text.getText());
-                    text.setText("");
-                    operation = "+";
-                    if (text.getText().indexOf(str1)==1 && text.getText().length()!=0){
-                            setDouble();
-                    }
-                        // else setInt
+                        a = Double.parseDouble(text.getText());
+                        operator=1;
+                        text.setText("");
                 }
                 if (e.getSource().equals((equal))){
-                    int secondIntValue = Integer.valueOf(text.getText());
-                    if("+".equals(operation)){
-                        text.setText((firstIntValue+secondIntValue)+"");
+                    b=Double.parseDouble(text.getText());
+                    switch (operator){
+                        case 1: result=a+b;
+                            break;
+                        default: result=0;
                     }
-                    firstIntValue = 0;
-                    operation = "";
-                }
+                    if ((result == Math.floor(result)) && !Double.isInfinite(result)){
+                        text.setText((int)result+"");
+                    }
+                    else
+                    text.setText(result+"");
 
+                }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
                         text.setText(text.getText() + "1");
@@ -381,14 +382,5 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                 }
             }
-                public void setDouble (){
-
-                    }
-
-                public void setInt (int x){
-
-                }
-
-
 }
 
