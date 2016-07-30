@@ -21,7 +21,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JTextField text2;
     private JScrollPane scroll;
     private double a=0, b=0, result=0;
-    private int operator=0, operatorEnter=0;
+    private int operator=0, operatorEnter=0, enterFlag=0;
     private String str1 = ".", c="", p="+";
 
 
@@ -359,6 +359,7 @@ public class Calculator extends JFrame implements ActionListener{
                             else
                                 text.setText(roundA + "");
                         }
+                        enterFlag=1;
                         panel.requestFocus();
                 }
                 if (e.getSource().equals((enter))){
@@ -367,25 +368,28 @@ public class Calculator extends JFrame implements ActionListener{
                     b=Double.parseDouble(text.getText());
                     if (text.getText().length()!=0) {
                     switch (operatorEnter){
-                        case 1: result=a+b;
+                        case 1: result=b+a;
                             break;
                         default: result=0;
                     }
-                        double roundA = (double)Math.round(result * 1000000) / 1000000;
+                        double roundResult = (double)Math.round(result * 1000000) / 1000000;
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                             text.setText((long) result + "");
 
                         } else {
-                            text.setText(roundA + "");
+                            text.setText(roundResult + "");
                         }
                     }
                     a=0;
+                    b=0;
+                    enterFlag=1;
                     panel.requestFocus();
                 }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
                         c+="1";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")){
                             text.setText("1");
                         }
@@ -396,6 +400,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b2)) {
                         c+="2";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("2");
                         }
@@ -406,6 +411,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b3)) {
                         c+="3";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("3");
                         }
@@ -416,6 +422,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b4)) {
                         c+="4";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("4");
                         }
@@ -426,6 +433,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b5)) {
                         c+="5";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("5");
                         }
@@ -436,6 +444,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b6)) {
                         c+="6";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("6");
                         }
@@ -446,6 +455,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b7)) {
                         c+="7";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("7");
                         }
@@ -456,6 +466,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b8)) {
                         c+="8";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("8");
                         }
@@ -466,6 +477,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b9)) {
                         c+="9";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("9");
                         }
@@ -476,6 +488,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b0)) {
                         c+="0";
                         setNull();
+                        setEnterNull();
                         if (text.getText().equals("0")) {
                             text.setText("0");
                         }
@@ -507,6 +520,13 @@ public class Calculator extends JFrame implements ActionListener{
                     operator = 0;
                 }
             }
+            public void setEnterNull(){
+                if (enterFlag==1){
+                    text.setText("");
+                    enterFlag=0;
+                }
+
+    }
 
 }
 
