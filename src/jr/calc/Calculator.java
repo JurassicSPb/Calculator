@@ -7,7 +7,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Arc2D;
 
 /**
  * Created by spbw0-rep6 on 25.07.2016.
@@ -15,12 +14,12 @@ import java.awt.geom.Arc2D;
 public class Calculator extends JFrame implements ActionListener{
     private JPanel panel;
     private JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0;
-    private JButton plus, minus, multiplication, division, equal;
+    private JButton plus, minus, multiplication, division, enter;
     private JButton point, sqrt, percent, negative, backspace;
     private JButton ce;
     private JTextField text;
-    private static double a=0, b=0, result=0;
-    private static int operator=0;
+    private double a=0, b=0, result=0;
+    private int operator=0, operatorEnter=0;
     private String str1 = ".";
 
 
@@ -201,18 +200,19 @@ public class Calculator extends JFrame implements ActionListener{
         plus.setFont(fontButton);
         plus.addActionListener(this);
         panel.add(plus);
-        equal = new JButton("=");
-        equal.setBackground(Color.CYAN);
-        equal.setSize(95, 40);
-        equal.setLocation(212, 210);
-        equal.setBorder(compound);
-        equal.setFont(fontButton);
-        equal.addActionListener(this);
-        panel.add(equal);
+        enter = new JButton("=");
+        enter.setBackground(Color.CYAN);
+        enter.setSize(95, 40);
+        enter.setLocation(212, 210);
+        enter.setBorder(compound);
+        enter.setFont(fontButton);
+        enter.addActionListener(this);
+        panel.add(enter);
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
+
                 if (c==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
                     backspace.setBorder(lowered);
                     text.setText(text.getText().substring(0, text.getText().length()-1));
@@ -221,6 +221,7 @@ public class Calculator extends JFrame implements ActionListener{
                     ce.setBorder(lowered);
                     text.setText("");
                 }
+
                 if (text.getText().length()<18) {
                     if (c == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
@@ -306,16 +307,26 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (e.getSource().equals(ce)){
                     text.setText("");
+                    a=0;
+                    b=0;
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(plus)){
-                        a = Double.parseDouble(text.getText());
-                        operator=1;
-                        text.setText("");
+                        if(text.getText().length()!=0) {
+                            b = Double.parseDouble(text.getText());
+                            a = a + b;
+                            operator = 1;
+                            operatorEnter=1;
+                        }
+                    if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                        text.setText((int)a + "");
+                    }
+                    else
+                        text.setText(a + "");
                 }
-                if (e.getSource().equals((equal))){
+                if (e.getSource().equals((enter))){
                     b=Double.parseDouble(text.getText());
-                    switch (operator){
+                    switch (operatorEnter){
                         case 1: result=a+b;
                             break;
                         default: result=0;
@@ -325,46 +336,56 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     else
                     text.setText(result+"");
-
                 }
                 if (text.getText().length() < 18) {
+
                     if (e.getSource().equals(b1)) {
+                        setNull();
                         text.setText(text.getText() + "1");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b2)) {
+                        setNull();
                         text.setText(text.getText() + "2");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b3)) {
+                        setNull();
                         text.setText(text.getText() + "3");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b4)) {
+                        setNull();
                         text.setText(text.getText() + "4");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b5)) {
+                        setNull();
                         text.setText(text.getText() + "5");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b6)) {
+                        setNull();
                         text.setText(text.getText() + "6");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b7)) {
+                        setNull();
                         text.setText(text.getText() + "7");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b8)) {
+                        setNull();
                         text.setText(text.getText() + "8");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b9)) {
+                        setNull();
                         text.setText(text.getText() + "9");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b0)) {
+                        setNull();
                         text.setText(text.getText() + "0");
                         panel.requestFocus();
                     }
@@ -380,6 +401,13 @@ public class Calculator extends JFrame implements ActionListener{
                             panel.requestFocus();
                         }
                     }
+                }
+            }
+            public void setNull() {
+                if (operator == 1)
+                {
+                    text.setText("");
+                    operator = 0;
                 }
             }
 }
