@@ -315,14 +315,16 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
+                            double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
+                            if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                text.setText((int)a + "");
+                            }
+                            else
+                                text.setText(roundA + "");
                         }
-                    if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                        text.setText((int)a + "");
-                    }
-                    else
-                        text.setText(a + "");
+
                 }
                 if (e.getSource().equals((enter))){
                     b=Double.parseDouble(text.getText());
@@ -338,7 +340,6 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText(result+"");
                 }
                 if (text.getText().length() < 18) {
-
                     if (e.getSource().equals(b1)) {
                         setNull();
                         text.setText(text.getText() + "1");
@@ -410,5 +411,6 @@ public class Calculator extends JFrame implements ActionListener{
                     operator = 0;
                 }
             }
+
 }
 
