@@ -440,7 +440,9 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point) && text.getText().length()!=0){
-                        c+=".";
+                        if (text.getText().indexOf(str1)<1) {
+                            c += ".";
+                        }
                         if (text.getText().indexOf(str1)>=1)
                         {
                             panel.requestFocus();
@@ -453,7 +455,7 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                     }
                 }
-                text2.setText(c+"");
+                    text2.setText(c+"");
             }
             public void setNull() {
                 if (operator == 1) {
