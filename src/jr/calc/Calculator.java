@@ -21,7 +21,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JTextField text2;
     private double a=0, b=0, result=0;
     private int operator=0, operatorEnter=0;
-    private String str1 = ".";
+    private String str1 = ".", c="";
 
 
 
@@ -331,6 +331,8 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(ce)){
+                    c="";
+                    text2.setText("");
                     text.setText("");
                     a=0;
                     b=0;
@@ -340,6 +342,7 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
+                            c += "+";
                             double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
@@ -356,6 +359,8 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                 }
                 if (e.getSource().equals((enter))){
+                    c="";
+                    text2.setText("");
                     b=Double.parseDouble(text.getText());
                     switch (operatorEnter){
                         case 1: result=a+b;
@@ -373,51 +378,61 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
+                        c+="1";
                         setNull();
                         text.setText(text.getText() + "1");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b2)) {
+                        c+="2";
                         setNull();
                         text.setText(text.getText() + "2");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b3)) {
+                        c+="3";
                         setNull();
                         text.setText(text.getText() + "3");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b4)) {
+                        c+="4";
                         setNull();
                         text.setText(text.getText() + "4");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b5)) {
+                        c+="5";
                         setNull();
                         text.setText(text.getText() + "5");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b6)) {
+                        c+="6";
                         setNull();
                         text.setText(text.getText() + "6");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b7)) {
+                        c+="7";
                         setNull();
                         text.setText(text.getText() + "7");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b8)) {
+                        c+="8";
                         setNull();
                         text.setText(text.getText() + "8");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b9)) {
+                        c+="9";
                         setNull();
                         text.setText(text.getText() + "9");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b0)) {
+                        c+="0";
                         setNull();
                         if (text.getText().length()<1) {
                             text.setText(text.getText() + "0");
@@ -425,6 +440,7 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point) && text.getText().length()!=0){
+                        c+=".";
                         if (text.getText().indexOf(str1)>=1)
                         {
                             panel.requestFocus();
@@ -437,6 +453,7 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                     }
                 }
+                text2.setText(c+"");
             }
             public void setNull() {
                 if (operator == 1) {
