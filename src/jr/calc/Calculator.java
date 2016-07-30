@@ -41,6 +41,7 @@ public class Calculator extends JFrame implements ActionListener{
         text.setLocation(15, 37);
         Font font = new Font("SansSerif", Font.BOLD, 24);
         Font fontButton = new Font("SansSerif", Font.BOLD, 19);
+        Font fontText2 = new Font("Courier", Font.PLAIN,17);
         text.setFont(font);
         text.setHorizontalAlignment(JTextField.RIGHT);
         text.setBorder(new LineBorder(Color.black, 1));
@@ -63,8 +64,8 @@ public class Calculator extends JFrame implements ActionListener{
         text2 = new JTextField();
         text2.setSize(292, 25);
         text2.setLocation(15, 12);
+        text2.setFont(fontText2);
         text2.setBackground(Color.WHITE);
-        text2.setFont(font);
         text2.setHorizontalAlignment(JTextField.RIGHT);
         text2.addKeyListener(new KeyAdapter() {
             @Override
@@ -345,6 +346,7 @@ public class Calculator extends JFrame implements ActionListener{
                             }
                             else
                                 text.setText(roundA + "");
+
                         }
                 }
                 if (e.getSource().equals((enter))){
@@ -428,8 +430,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
             }
             public void setNull() {
-                if (operator == 1)
-                {
+                if (operator == 1) {
                     text.setText("");
                     operator = 0;
                 }
