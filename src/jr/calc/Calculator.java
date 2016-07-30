@@ -37,7 +37,7 @@ public class Calculator extends JFrame implements ActionListener{
         setContentPane(panel);
         setSize(326, 330);
         setResizable(false);
-        text = new JTextField();
+        text = new JTextField("0");
         text.setSize(291, 45);
         text.setLocation(15, 53);
         Font font = new Font("SansSerif", Font.BOLD, 24);
@@ -340,7 +340,7 @@ public class Calculator extends JFrame implements ActionListener{
                 if (e.getSource().equals(ce)){
                     c="";
                     text2.setText("");
-                    text.setText("");
+                    text.setText("0");
                     a=0;
                     b=0;
                     panel.requestFocus();
@@ -349,12 +349,7 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
-//                            if (text2.getText().length()<1){
-//                                return;
-//                            }
-//                            else {
-//                                c += "+";
-//                            }
+                            c += "+";
                             double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
@@ -390,60 +385,100 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b1)) {
                         c+="1";
                         setNull();
+                        if (text.getText().equals("0")){
+                            text.setText("1");
+                        }
+                        else
                         text.setText(text.getText() + "1");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b2)) {
                         c+="2";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("2");
+                        }
+                        else
                         text.setText(text.getText() + "2");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b3)) {
                         c+="3";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("3");
+                        }
+                        else
                         text.setText(text.getText() + "3");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b4)) {
                         c+="4";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("4");
+                        }
+                        else
                         text.setText(text.getText() + "4");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b5)) {
                         c+="5";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("5");
+                        }
+                        else
                         text.setText(text.getText() + "5");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b6)) {
                         c+="6";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("6");
+                        }
+                        else
                         text.setText(text.getText() + "6");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b7)) {
                         c+="7";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("7");
+                        }
+                        else
                         text.setText(text.getText() + "7");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b8)) {
                         c+="8";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("8");
+                        }
+                        else
                         text.setText(text.getText() + "8");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b9)) {
                         c+="9";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("9");
+                        }
+                        else
                         text.setText(text.getText() + "9");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(b0)) {
                         c+="0";
                         setNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("0");
+                        }
+                        else
                         text.setText(text.getText() + "0");
                         panel.requestFocus();
                     }
