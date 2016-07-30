@@ -21,7 +21,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JTextField text2;
     private double a=0, b=0, result=0;
     private int operator=0, operatorEnter=0;
-    private String str1 = ".", c="";
+    private String str1 = ".", c="", p="+";
 
 
 
@@ -342,19 +342,20 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
-                            c += "+";
+//                            if (text2.getText().length()<1){
+//                                return;
+//                            }
+//                            else {
+//                                c += "+";
+//                            }
                             double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
                             if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                 text.setText((int)a + "");
-                                if (a!=0) {
-                                    text2.setText((int) b + "+" + (int) a + "=" + (int) a);
-                                }
                             }
                             else
                                 text.setText(roundA + "");
-
                         }
                         panel.requestFocus();
                 }
@@ -362,16 +363,18 @@ public class Calculator extends JFrame implements ActionListener{
                     c="";
                     text2.setText("");
                     b=Double.parseDouble(text.getText());
+                    if (text.getText().length()!=0) {
                     switch (operatorEnter){
                         case 1: result=a+b;
                             break;
                         default: result=0;
                     }
-                    if ((result == Math.floor(result)) && !Double.isInfinite(result)){
-                        text.setText((int)result+"");
-                    }
-                    else {
-                        text.setText(result + "");
+                        if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                            text.setText((int) result + "");
+
+                        } else {
+                            text.setText(result + "");
+                        }
                     }
                     a=0;
                     panel.requestFocus();
@@ -434,9 +437,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (e.getSource().equals(b0)) {
                         c+="0";
                         setNull();
-                        if (text.getText().length()<1) {
-                            text.setText(text.getText() + "0");
-                        }
+                        text.setText(text.getText() + "0");
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point) && text.getText().length()!=0){
@@ -455,7 +456,7 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                     }
                 }
-                    text2.setText(c+"");
+//                    text2.setText(c+"");
             }
             public void setNull() {
                 if (operator == 1) {
