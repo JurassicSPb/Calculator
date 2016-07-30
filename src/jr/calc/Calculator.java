@@ -371,11 +371,12 @@ public class Calculator extends JFrame implements ActionListener{
                             break;
                         default: result=0;
                     }
+                        double roundA = (double)Math.round(result * 1000000) / 1000000;
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                             text.setText((long) result + "");
 
                         } else {
-                            text.setText(result + "");
+                            text.setText(roundA + "");
                         }
                     }
                     a=0;
