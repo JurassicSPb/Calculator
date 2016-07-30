@@ -324,7 +324,6 @@ public class Calculator extends JFrame implements ActionListener{
                             else
                                 text.setText(roundA + "");
                         }
-
                 }
                 if (e.getSource().equals((enter))){
                     b=Double.parseDouble(text.getText());
@@ -336,8 +335,10 @@ public class Calculator extends JFrame implements ActionListener{
                     if ((result == Math.floor(result)) && !Double.isInfinite(result)){
                         text.setText((int)result+"");
                     }
-                    else
-                    text.setText(result+"");
+                    else {
+                        text.setText(result + "");
+                    }
+                    a=0;
                 }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
