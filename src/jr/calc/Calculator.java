@@ -359,7 +359,7 @@ public class Calculator extends JFrame implements ActionListener{
                             operator = 1;
                             operatorEnter=1;
                             if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                                text.setText((int)a + "");
+                                text.setText((long)a + "");
                             }
                             else
                                 text.setText(roundA + "");
@@ -377,7 +377,7 @@ public class Calculator extends JFrame implements ActionListener{
                         default: result=0;
                     }
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
-                            text.setText((int) result + "");
+                            text.setText((long) result + "");
 
                         } else {
                             text.setText(result + "");
