@@ -353,6 +353,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 text.setText(roundA + "");
 
                         }
+                        panel.requestFocus();
                 }
                 if (e.getSource().equals((enter))){
                     b=Double.parseDouble(text.getText());
@@ -368,6 +369,7 @@ public class Calculator extends JFrame implements ActionListener{
                         text.setText(result + "");
                     }
                     a=0;
+                    panel.requestFocus();
                 }
                 if (text.getText().length() < 18) {
                     if (e.getSource().equals(b1)) {
