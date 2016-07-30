@@ -343,6 +343,9 @@ public class Calculator extends JFrame implements ActionListener{
                             operatorEnter=1;
                             if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                 text.setText((int)a + "");
+                                if (a!=0) {
+                                    text2.setText((int) b + "+" + (int) a + "=" + (int) a);
+                                }
                             }
                             else
                                 text.setText(roundA + "");
@@ -412,7 +415,9 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     if (e.getSource().equals(b0)) {
                         setNull();
-                        text.setText(text.getText() + "0");
+                        if (text.getText().length()<1) {
+                            text.setText(text.getText() + "0");
+                        }
                         panel.requestFocus();
                     }
                     if (e.getSource().equals(point) && text.getText().length()!=0){
