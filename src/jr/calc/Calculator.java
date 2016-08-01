@@ -349,7 +349,9 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
-                            c += "+";
+                            if (text2.getText().length()!=0) {
+                                c += "+";
+                            }
                             double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
