@@ -346,7 +346,7 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(plus) && text2.getText().indexOf("+", text2.getText().length()-1)<1){
-                        if(text.getText().length()!=0) {
+                        if(text.getText().length()!=0 && text2.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
                             if (text2.getText().length()!=0) {
