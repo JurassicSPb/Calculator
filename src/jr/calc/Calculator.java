@@ -266,7 +266,7 @@ public class Calculator extends JFrame implements ActionListener{
                 if (ch==KeyEvent.VK_ENTER && text.getText().length()!=0){
                     enter.setBorder(lowered);
                 }
-                if (text.getText().length()<18) {
+                if (text.getText().length()<16) {
                     if (ch == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
                         if (text2.getText().equals("0")){
@@ -356,7 +356,7 @@ public class Calculator extends JFrame implements ActionListener{
         });
     }
             public void actionPerformed (ActionEvent e) {
-                if (text.getText().length()==0 || text.getText().length()>=18){
+                if (text.getText().length()==0 || text.getText().length()>=16){
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(backspace) && text.getText().length()!=0){
@@ -379,7 +379,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (e.getSource().equals(plus)) {
                     panel.requestFocus();
-                    if (text2.getText().indexOf("+", text2.getText().length() - 1) < 1) {
+                    if (text2.getText().indexOf("+", text2.getText().length() - 1) <1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
@@ -393,7 +393,7 @@ public class Calculator extends JFrame implements ActionListener{
                             operator = 1;
                             operatorEnter = 1;
                             if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                                text.setText((long) a + "");
+                                    text.setText((long) a + "");
                             } else
                                 text.setText(roundA + "");
                         }
@@ -423,7 +423,7 @@ public class Calculator extends JFrame implements ActionListener{
                     enterFlag=1;
                     panel.requestFocus();
                 }
-                if (text.getText().length() < 18) {
+                if (text.getText().length() < 16) {
                     if (e.getSource().equals(b1)) {
                         if (text2.getText().equals("0")){
                             c="1";
