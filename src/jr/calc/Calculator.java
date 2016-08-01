@@ -241,61 +241,68 @@ public class Calculator extends JFrame implements ActionListener{
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-
-                if (c==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
+                char ch = e.getKeyChar();
+                if (ch==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
                     backspace.setBorder(lowered);
                     text.setText(text.getText().substring(0, text.getText().length()-1));
                 }
-                if (c==KeyEvent.VK_ESCAPE && text.getText().length()!=0){
+                if (ch==KeyEvent.VK_ESCAPE && text.getText().length()!=0){
                     ce.setBorder(lowered);
-                    text.setText("");
+                    text.setText("0");
+                    text2.setText("0");
+                    a=0;
+                    b=0;
                 }
-
+                if (ch==KeyEvent.VK_PLUS && text.getText().length()!=0){
+                    plus.setBorder(lowered);
+                }
+                if (ch==KeyEvent.VK_ENTER && text.getText().length()!=0){
+                    enter.setBorder(lowered);
+                }
                 if (text.getText().length()<18) {
-                    if (c == KeyEvent.VK_1) {
+                    if (ch == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
                         text.setText(text.getText() + "1");
                     }
-                    if (c==KeyEvent.VK_2){
+                    if (ch==KeyEvent.VK_2){
                         b2.setBorder(lowered);
                         text.setText(text.getText() + "2");
                     }
-                    if (c==KeyEvent.VK_3){
+                    if (ch==KeyEvent.VK_3){
                         b3.setBorder(lowered);
                         text.setText(text.getText() + "3");
                     }
-                    if (c==KeyEvent.VK_4){
+                    if (ch==KeyEvent.VK_4){
                         b4.setBorder(lowered);
                         text.setText(text.getText() + "4");
                     }
-                    if (c==KeyEvent.VK_5){
+                    if (ch==KeyEvent.VK_5){
                         b5.setBorder(lowered);
                         text.setText(text.getText() + "5");
                     }
-                    if (c==KeyEvent.VK_6){
+                    if (ch==KeyEvent.VK_6){
                         b6.setBorder(lowered);
                         text.setText(text.getText() + "6");
                     }
-                    if (c==KeyEvent.VK_7){
+                    if (ch==KeyEvent.VK_7){
                         b7.setBorder(lowered);
                         text.setText(text.getText() + "7");
                     }
-                    if (c==KeyEvent.VK_8){
+                    if (ch==KeyEvent.VK_8){
                         b8.setBorder(lowered);
                         text.setText(text.getText() + "8");
                     }
-                    if (c==KeyEvent.VK_9){
+                    if (ch==KeyEvent.VK_9){
                         b9.setBorder(lowered);
                         text.setText(text.getText() + "9");
                     }
-                    if (c==KeyEvent.VK_0){
+                    if (ch==KeyEvent.VK_0){
                         b0.setBorder(lowered);
                         if (text.getText().length()<1) {
                             text.setText(text.getText() + "0");
                         }
                     }
-                    if (c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_QUOTE){
+                    if (ch==KeyEvent.VK_PERIOD || ch==KeyEvent.VK_QUOTE){
                         if ( (text.getText().length()!=0)) {
                             String str1 = ".";
                             if (text.getText().indexOf(str1) >= 1) {
@@ -326,6 +333,8 @@ public class Calculator extends JFrame implements ActionListener{
                 backspace.setBorder(compound);
                 ce.setBorder(compound);
                 point.setBorder(compound);
+                plus.setBorder(compound);
+                enter.setBorder(compound);
             }
         });
     }
