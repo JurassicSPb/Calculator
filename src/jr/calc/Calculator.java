@@ -245,13 +245,20 @@ public class Calculator extends JFrame implements ActionListener{
                 if (ch==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
                     backspace.setBorder(lowered);
                     text.setText(text.getText().substring(0, text.getText().length()-1));
+                    c=text2.getText().substring(0, text2.getText().length()-1);
+                    if (text.getText().length()==0 || text2.getText().length()==0 || text.getText().equals("0") || text2.getText().equals("0")) {
+                        text.setText("0");
+                        c = "0";
+                        text2.setText(c);
+                    }
                 }
                 if (ch==KeyEvent.VK_ESCAPE && text.getText().length()!=0){
-                    ce.setBorder(lowered);
-                    text.setText("0");
-                    text2.setText("0");
+                    c="0";
                     a=0;
                     b=0;
+                    ce.setBorder(lowered);
+                    text.setText("0");
+                    text2.setText(c);
                 }
                 if (ch==KeyEvent.VK_PLUS && text.getText().length()!=0){
                     plus.setBorder(lowered);
@@ -262,7 +269,16 @@ public class Calculator extends JFrame implements ActionListener{
                 if (text.getText().length()<18) {
                     if (ch == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
-                        text.setText(text.getText() + "1");
+                        if (text2.getText().equals("0")){
+                            c="1";
+                        }
+                        else {c+="1";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("1");
+                        }
+                        else {text.setText(text.getText() + "1");}
                     }
                     if (ch==KeyEvent.VK_2){
                         b2.setBorder(lowered);
@@ -302,18 +318,19 @@ public class Calculator extends JFrame implements ActionListener{
                             text.setText(text.getText() + "0");
                         }
                     }
-                    if (ch==KeyEvent.VK_PERIOD || ch==KeyEvent.VK_QUOTE){
-                        if ( (text.getText().length()!=0)) {
-                            String str1 = ".";
-                            if (text.getText().indexOf(str1) >= 1) {
-                                return;
-                            } else {
-                                point.setBorder(lowered);
-                                text.setText(text.getText() + str1);
-                            }
+                    if (ch==KeyEvent.VK_PERIOD || ch==KeyEvent.VK_QUOTE && text.getText().length()!=0){
+                        if (text.getText().indexOf(str1)<1) {
+                            c += ".";
+                        }
+                        if (text.getText().indexOf(str1)>=1) {
+                            return;
+                        }
+                        else {
+                            text.setText(text.getText() + str1);
                         }
                     }
                 }
+                text2.setText(c+"");
             }
             @Override
             public void keyPressed(KeyEvent e) {}
