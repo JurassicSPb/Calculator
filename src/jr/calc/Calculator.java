@@ -377,26 +377,29 @@ public class Calculator extends JFrame implements ActionListener{
                     b=0;
                     panel.requestFocus();
                 }
-                if (e.getSource().equals(plus) && text2.getText().indexOf("+", text2.getText().length()-1)<1){
-                        if(text.getText().length()!=0 && text2.getText().length()!=0) {
+                if (e.getSource().equals(plus)) {
+                    panel.requestFocus();
+                    if (text2.getText().indexOf("+", text2.getText().length() - 1) < 1) {
+                        if (text.getText().length() != 0 && text2.getText().length() != 0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
-                            if (text2.getText().equals("0"))
-                            {
-                                c=text.getText()+"+";
+                            if (text2.getText().equals("0")) {
+                                c = text.getText() + "+";
+
+                            } else {
+                                c += "+";
                             }
-                            else {c += "+";}
-                            double roundA = (double)Math.round(a * 1000000) / 1000000;
+                            double roundA = (double) Math.round(a * 1000000) / 1000000;
                             operator = 1;
-                            operatorEnter=1;
+                            operatorEnter = 1;
                             if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                                text.setText((long)a + "");
-                            }
-                            else
+                                text.setText((long) a + "");
+                            } else
                                 text.setText(roundA + "");
                         }
-                        enterFlag=1;
+                        enterFlag = 1;
                         panel.requestFocus();
+                    }
                 }
                 if (e.getSource().equals((enter))){
                     c="0";
