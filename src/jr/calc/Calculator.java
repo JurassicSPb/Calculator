@@ -344,6 +344,12 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (e.getSource().equals(backspace) && text.getText().length()!=0){
                     text.setText(text.getText().substring(0, text.getText().length()-1));
+                    c=(text2.getText().substring(0, text2.getText().length()-1));
+                    if (text.getText().length()==0){
+                        text.setText("0");
+                        c="0";
+                        text2.setText(c);
+                    }
                     panel.requestFocus();
                 }
                 if (e.getSource().equals(ce)){
