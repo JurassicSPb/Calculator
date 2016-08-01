@@ -62,7 +62,7 @@ public class Calculator extends JFrame implements ActionListener{
         });
         text.setBackground(Color.WHITE);
         panel.add(text);
-        text2 = new JTextField();
+        text2 = new JTextField("0");
         text2.setSize(292, 25);
         text2.setPreferredSize(new Dimension(500, 25));
         text2.setLocation(15, 12);
@@ -339,7 +339,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if (e.getSource().equals(ce)){
                     c="";
-                    text2.setText("");
+                    text2.setText("0");
                     text.setText("0");
                     a=0;
                     b=0;
@@ -349,9 +349,7 @@ public class Calculator extends JFrame implements ActionListener{
                         if(text.getText().length()!=0 && text2.getText().length()!=0) {
                             b = Double.parseDouble(text.getText());
                             a = a + b;
-                            if (text2.getText().length()!=0) {
-                                c += "+";
-                            }
+                            c += "+";
                             double roundA = (double)Math.round(a * 1000000) / 1000000;
                             operator = 1;
                             operatorEnter=1;
@@ -365,8 +363,8 @@ public class Calculator extends JFrame implements ActionListener{
                         panel.requestFocus();
                 }
                 if (e.getSource().equals((enter))){
-                    c="";
-                    text2.setText("");
+                    c="0";
+                    text2.setText("0");
                     b=Double.parseDouble(text.getText());
                     if (text.getText().length()!=0) {
                     switch (operatorEnter){
