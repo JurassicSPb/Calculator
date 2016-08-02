@@ -504,8 +504,13 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if(e.getSource().equals(negative) && text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
-                    text.setText("-"+text.getText());
-//                    c="-"+c;
+                    if (text.getText().indexOf("-")==-1){
+                        text.setText("-"+text.getText());
+                        c="~"+c;
+                    }
+                    else
+                        text.setText(text.getText().substring(1, text.getText().length()));
+//                        c+="";
                 }
                 if (e.getSource().equals(ce)){
                     c="0";
@@ -550,7 +555,7 @@ public class Calculator extends JFrame implements ActionListener{
                 if (e.getSource().equals(minus)) {
                     panel.requestFocus();
                     if (text2.getText().indexOf("-", text2.getText().length() - 1) ==-1
-                        && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
+                            && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
                             b = Double.parseDouble(text.getText());
                             if (text2.getText().indexOf("+", text2.getText().length()-2 - text.getText().length()) !=-1){
