@@ -505,7 +505,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
                 if(e.getSource().equals(negative) && text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
                     text.setText("-"+text.getText());
-                    c="-"+c;
+//                    c="-"+c;
                 }
                 if (e.getSource().equals(ce)){
                     c="0";
