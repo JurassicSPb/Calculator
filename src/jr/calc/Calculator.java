@@ -20,7 +20,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JTextField text;
     private JTextField text2;
     private JScrollPane scroll;
-    private double a=0, b=0, result=0;
+    private double a=0, b=0, result=0, tmp=0;
     private int operator=0, operatorEnter=0, enterFlag=0;
     private String str1 = ".", c="", p="+";
 
@@ -516,6 +516,10 @@ public class Calculator extends JFrame implements ActionListener{
                             && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
                             b = Double.parseDouble(text.getText());
+                            if (text2.getText().indexOf("-", text2.getText().length() - 2) >0){
+                                a=Math.abs(a-b);
+                            }
+                            else
                             a = a + b;
                             if (text2.getText().equals("0")) {
                                 c = text.getText() + "+";
@@ -544,7 +548,8 @@ public class Calculator extends JFrame implements ActionListener{
                             if (text2.getText().indexOf("+", text2.getText().length() - 2) >0){
                                 a=a+b;
                             }
-                            else a=a-b;
+                            else
+                            a=Math.abs(a-b);
                             if (text2.getText().equals("0")) {
                                 c = text.getText() + "-";
 
