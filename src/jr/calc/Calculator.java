@@ -260,13 +260,53 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText("0");
                     text2.setText(c);
                 }
-                if (ch==KeyEvent.VK_PLUS && text.getText().length()!=0){
+                if (ch=='+'){
                     plus.setBorder(lowered);
+                    if (text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
+                        if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                            b = Double.parseDouble(text.getText());
+                            a = a + b;
+                            if (text2.getText().equals("0")) {
+                                c = text.getText() + "+";
+
+                            } else {
+                                c += "+";
+                            }
+                            double roundA = (double) Math.round(a * 1000000) / 1000000;
+                            operator = 1;
+                            operatorEnter = 1;
+                            if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                text.setText((long) a + "");
+                            } else
+                                text.setText(roundA + "");
+                        }
+                        enterFlag = 1;
+                    }
                 }
-                if (ch==KeyEvent.VK_ENTER && text.getText().length()!=0){
+                if (ch==KeyEvent.VK_ENTER){
                     enter.setBorder(lowered);
+                    c="0";
+                    text2.setText(c);
+                    b=Double.parseDouble(text.getText());
+                    if (text.getText().length()!=0) {
+                        switch (operatorEnter){
+                            case 1: result=a+b;
+                                break;
+                            default: result=0;
+                        }
+                        double roundResult = (double)Math.round(result * 1000000) / 1000000;
+                        if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                            text.setText((long) result + "");
+
+                        } else {
+                            text.setText(roundResult + "");
+                        }
+                    }
+                    a=0;
+                    enterFlag=1;
+                    panel.requestFocus();
                 }
-                if (text.getText().length()<16) {
+                if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) >0) {
                     if (ch == KeyEvent.VK_1) {
                         b1.setBorder(lowered);
                         if (text2.getText().equals("0")){
@@ -282,43 +322,132 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     if (ch==KeyEvent.VK_2){
                         b2.setBorder(lowered);
+                        if (text2.getText().equals("0")){
+                            c="2";
+                        }
+                        else {c+="2";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("2");
+                        }
+                        else
                         text.setText(text.getText() + "2");
                     }
                     if (ch==KeyEvent.VK_3){
                         b3.setBorder(lowered);
+                        if (text2.getText().equals("0")){
+                            c="3";
+                        }
+                        else {c+="3";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("3");
+                        }
+                        else
                         text.setText(text.getText() + "3");
                     }
                     if (ch==KeyEvent.VK_4){
                         b4.setBorder(lowered);
+                        if (text2.getText().equals("0")){
+                            c="4";
+                        }
+                        else {c+="4";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("4");
+                        }
+                        else
                         text.setText(text.getText() + "4");
                     }
                     if (ch==KeyEvent.VK_5){
                         b5.setBorder(lowered);
-                        text.setText(text.getText() + "5");
+                        if (text2.getText().equals("0")){
+                            c="5";
+                        }
+                        else {c+="5";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("5");
+                        }
+                        else
+                            text.setText(text.getText() + "5");
                     }
                     if (ch==KeyEvent.VK_6){
                         b6.setBorder(lowered);
-                        text.setText(text.getText() + "6");
+                        if (text2.getText().equals("0")){
+                            c="6";
+                        }
+                        else {c+="6";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("6");
+                        }
+                        else
+                            text.setText(text.getText() + "6");
                     }
                     if (ch==KeyEvent.VK_7){
                         b7.setBorder(lowered);
-                        text.setText(text.getText() + "7");
+                        if (text2.getText().equals("0")){
+                            c="7";
+                        }
+                        else {c+="7";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("7");
+                        }
+                        else
+                            text.setText(text.getText() + "7");
                     }
                     if (ch==KeyEvent.VK_8){
                         b8.setBorder(lowered);
-                        text.setText(text.getText() + "8");
+                        if (text2.getText().equals("0")){
+                            c="8";
+                        }
+                        else {c+="8";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("8");
+                        }
+                        else
+                            text.setText(text.getText() + "8");
                     }
                     if (ch==KeyEvent.VK_9){
                         b9.setBorder(lowered);
-                        text.setText(text.getText() + "9");
+                        if (text2.getText().equals("0")){
+                            c="9";
+                        }
+                        else {c+="9";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("9");
+                        }
+                        else
+                            text.setText(text.getText() + "9");
                     }
                     if (ch==KeyEvent.VK_0){
                         b0.setBorder(lowered);
-                        if (text.getText().length()<1) {
-                            text.setText(text.getText() + "0");
+                        if (text2.getText().equals("0")) {
+                            c = "0";
                         }
+                        else {c += "0";}
+                        setNull();
+                        setEnterNull();
+                        if (text.getText().equals("0")) {
+                            text.setText("0");
+                        }
+                        else
+                        text.setText(text.getText() + "0");
                     }
                     if (ch==KeyEvent.VK_PERIOD || ch==KeyEvent.VK_QUOTE && text.getText().length()!=0){
+                        point.setBorder(lowered);
                         if (text.getText().indexOf(str1)<1) {
                             c += ".";
                         }
