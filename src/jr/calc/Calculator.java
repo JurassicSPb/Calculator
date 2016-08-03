@@ -20,7 +20,7 @@ public class Calculator extends JFrame implements ActionListener{
     private JTextField text;
     private JTextField text2;
     private JScrollPane scroll;
-    private double a=0, b=0, result=0, tmp=0;
+    private double a=0, b=0, result=0, z=0;
     private int operator=0, operatorEnter=0, enterFlag=0;
     private String str1 = ".", c="", p="+";
 
@@ -504,13 +504,13 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
                 if(e.getSource().equals(negative) && text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
-                    if (text.getText().indexOf("-")==-1){
+                    if (text.getText().indexOf("-", 0)==-1){
                         text.setText("-"+text.getText());
-                        c="~"+c;
+                        c=c+(text2.getText().length()-text.getText().length());
+                        text2.setText(c);
                     }
                     else
                         text.setText(text.getText().substring(1, text.getText().length()));
-//                        c+="";
                 }
                 if (e.getSource().equals(ce)){
                     c="0";
@@ -557,14 +557,17 @@ public class Calculator extends JFrame implements ActionListener{
                     if (text2.getText().indexOf("-", text2.getText().length() - 1) ==-1
                             && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                            b = Double.parseDouble(text.getText());
                             if (text2.getText().indexOf("+", text2.getText().length()-2 - text.getText().length()) !=-1){
+                                b = Double.parseDouble(text.getText());
                                 a=a+b;
                             }
-                            else if (a==0){
-                                a=Math.abs(a-b);
+                            else if (text2.getText().indexOf("-")==-1){
+                                    z=Double.parseDouble(text.getText());
                             }
-                            else a=a-b;
+                            else {
+                                b = Double.parseDouble(text.getText());
+                                a = z - b;
+                            }
                             if (text2.getText().equals("0")) {
                                 c = text.getText() + "-";
 
@@ -592,6 +595,7 @@ public class Calculator extends JFrame implements ActionListener{
                         case 1: result=a+b;
                             break;
                         case 2: result=a-b;
+                            b=0;
                             break;
                         default: result=0;
                     }
