@@ -563,6 +563,7 @@ public class Calculator extends JFrame implements ActionListener{
                             }
                             else if (text2.getText().indexOf("-")==-1){
                                     z=Double.parseDouble(text.getText());
+                                    a = z - b;
                             }
                             else {
                                 b = Double.parseDouble(text.getText());
