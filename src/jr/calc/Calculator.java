@@ -507,7 +507,7 @@ public class Calculator extends JFrame implements ActionListener{
                     if (text.getText().indexOf("-", 0)==-1){
                         text.setText("-"+text.getText());
                         c=c+(text2.getText().length()-text.getText().length());
-                        text2.setText(c);
+//                        text2.setText(c);
                     }
                     else
                         text.setText(text.getText().substring(1, text.getText().length()));
@@ -562,12 +562,16 @@ public class Calculator extends JFrame implements ActionListener{
                                 a=a+b;
                             }
                             else if (text2.getText().indexOf("-")==-1){
+//                                    System.out.println(a);
+//                                    System.out.println(b);
+//                                     System.out.println(z);
                                     z=Double.parseDouble(text.getText());
                                     a = z - b;
                             }
                             else {
                                 b = Double.parseDouble(text.getText());
-                                a = z - b;
+                                a = a - b;
+
                             }
                             if (text2.getText().equals("0")) {
                                 c = text.getText() + "-";
@@ -596,7 +600,6 @@ public class Calculator extends JFrame implements ActionListener{
                         case 1: result=a+b;
                             break;
                         case 2: result=a-b;
-                            b=0;
                             break;
                         default: result=0;
                     }
