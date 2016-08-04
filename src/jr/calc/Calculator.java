@@ -678,6 +678,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
             }
             a=0;
+            operatorEnter=0;
             enterFlag=1;
             panel.requestFocus();
         }
