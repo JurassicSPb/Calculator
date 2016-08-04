@@ -510,7 +510,10 @@ public class Calculator extends JFrame implements ActionListener{
             }
             else {
                 text.setText(text.getText().substring(1, text.getText().length()));
-                c = text2.getText().replaceFirst("<negative>", "");
+                int index = text2.getText().lastIndexOf('<');
+                if(index != -1) {
+                    c = text2.getText().substring(0,index);
+                }
                 text2.setText(c);
             }
                 panel.requestFocus();
