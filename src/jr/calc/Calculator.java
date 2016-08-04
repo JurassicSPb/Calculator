@@ -169,6 +169,7 @@ public class Calculator extends JFrame implements ActionListener{
         sqrt.setSize(45, 40);
         sqrt.setLocation(212, 147);
         sqrt.setBorder(compound);
+        sqrt.addActionListener(this);
         panel.add(sqrt);
         b1 = new JButton("1");
         b1.setSize(45, 40);
@@ -218,6 +219,7 @@ public class Calculator extends JFrame implements ActionListener{
         percent.setLocation(212, 193);
         percent.setBorder(compound);
         percent.setFont(fontButton);
+        percent.addActionListener(this);
         panel.add(percent);
         backspace = new JButton("←");
         backspace.setSize(45, 40);
@@ -532,6 +534,17 @@ public class Calculator extends JFrame implements ActionListener{
             a=0;
             b=0;
             panel.requestFocus();
+        }
+        if (e.getSource().equals(percent)) {
+            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                b = Double.parseDouble(text.getText());
+                a=(a*b)/100;
+                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                    text.setText((long) a + "");
+                } else
+                    text.setText(roundA + "");
+            }
         }
         if (e.getSource().equals(plus)) {
             panel.requestFocus();
