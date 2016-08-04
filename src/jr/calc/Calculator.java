@@ -506,7 +506,7 @@ public class Calculator extends JFrame implements ActionListener{
                 if(e.getSource().equals(negative) && text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
                     if (text.getText().indexOf("-", 0)==-1){
                         text.setText("-"+text.getText());
-                        c="-"+c;
+                        c="~" + text.getText();
                     }
                     else
                         text.setText(text.getText().substring(1, text.getText().length()));
@@ -525,7 +525,7 @@ public class Calculator extends JFrame implements ActionListener{
                             && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
                             b = Double.parseDouble(text.getText());
-                            if (text2.getText().indexOf("-", text2.getText().length()-1 - text.getText().length()) !=-1){
+                            if (text2.getText().indexOf("-", text2.getText().length()-2 - text.getText().length()) !=-1){
                                 if (a==0) {
                                     a = Math.abs(a - b);
                                 }
@@ -556,11 +556,11 @@ public class Calculator extends JFrame implements ActionListener{
                     if (text2.getText().indexOf("-", text2.getText().length() - 1) ==-1
                             && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
                         if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                            if (text2.getText().indexOf("+", text2.getText().length()-1-text.getText().length()) !=-1){
+                            if (text2.getText().indexOf("+", text2.getText().length()-2 - text.getText().length()) !=-1){
                                 b = Double.parseDouble(text.getText());
                                 a=a+b;
                             }
-                            else if (text2.getText().indexOf("-", text2.getText().length()-2)==-1){
+                            else if (text2.getText().indexOf("-")==-1){
                                     b=0;
                                     z=Double.parseDouble(text.getText());
                                     a = z - b;
