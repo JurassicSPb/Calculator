@@ -707,7 +707,11 @@ public class Calculator extends JFrame implements ActionListener{
                             b = 1;
                             z = Double.parseDouble(text.getText());
                             a = z / b;
-                        } else {
+                        }
+                        else {
+                            if (b==0){
+                                divideByZero();
+                            }
                             b = Double.parseDouble(text.getText());
                             a = a / b;
                         }
@@ -930,5 +934,11 @@ public class Calculator extends JFrame implements ActionListener{
         }
 
     }
-
+    public void divideByZero(){
+        text.setText("0");
+        a=0;
+        b=0;
+        c="<На ноль делитьнельзя>";
+        text2.setText(c);
+    }
 }
