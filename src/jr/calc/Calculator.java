@@ -539,7 +539,6 @@ public class Calculator extends JFrame implements ActionListener{
             panel.requestFocus();
             if (text.getText().length() != 0 && text2.getText().length() != 0) {
                 if (!(text2.getText().equals("0"))) {
-                    System.out.println(text2.getText());
                     b = Double.parseDouble(text.getText());
                     result = (a * b) / 100;
                     c = c + "%";
@@ -656,7 +655,6 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                         else{
                             b = Double.parseDouble(text.getText());
-                            System.out.println("*b"+b);
                             a = a * b;
                         }
                     }
@@ -701,9 +699,6 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText(roundResult + "");
                 }
             }
-            System.out.println("a:"+a);
-            System.out.println("b:"+b);
-            System.out.println("result:"+result);
             a=0;
             operatorEnter=0;
             enterFlag=1;
