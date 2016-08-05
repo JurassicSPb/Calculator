@@ -536,15 +536,18 @@ public class Calculator extends JFrame implements ActionListener{
             panel.requestFocus();
         }
         if (e.getSource().equals(percent)) {
-            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+            if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
                 b = Double.parseDouble(text.getText());
-                a=(a*b)/100;
-                double roundA = (double) Math.round(a * 1000000) / 1000000;
-                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                    text.setText((long) a + "");
+                System.out.println("%a"+a);
+                System.out.println("%b"+b);
+                result = (a * b) / 100;
+                double roundA = (double) Math.round(result * 1000000) / 1000000;
+                if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                    text.setText((long) result + "");
                 } else
                     text.setText(roundA + "");
             }
+            panel.requestFocus();
         }
         if (e.getSource().equals(plus)) {
             panel.requestFocus();
@@ -596,14 +599,16 @@ public class Calculator extends JFrame implements ActionListener{
                     else if (text2.getText().indexOf('*', text2.getText().length()-2)!=-1){
                         a=a*b;
                     }
-                    else if (text2.getText().indexOf('-', text2.getText().length()-2)==-1){
-                        b=0;
-                        z=Double.parseDouble(text.getText());
-                        a = z - b;
-                    }
                     else {
-                        b = Double.parseDouble(text.getText());
-                        a = a - b;
+                        if (a==0) {
+                            b = 0;
+                            z = Double.parseDouble(text.getText());
+                            a = z - b;
+                        }
+                        else {
+                            b = Double.parseDouble(text.getText());
+                            a = a - b;
+                        }
                     }
                     if (text2.getText().equals("0")) {
                         c = text.getText() + "-";
@@ -640,14 +645,18 @@ public class Calculator extends JFrame implements ActionListener{
                     else if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1) {
                         a = a + b;
                     }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-2)==-1){
-                        b=1;
-                        z=Double.parseDouble(text.getText());
-                        a = z * b;
-                    }
                     else {
-                        b = Double.parseDouble(text.getText());
-                        a = a * b;
+                        if (a==0) {
+                            b = 1;
+                            z = Double.parseDouble(text.getText());
+                            System.out.println("*z" + z);
+                            a = z * b;
+                        }
+                        else{
+                            b = Double.parseDouble(text.getText());
+                            System.out.println("*b"+b);
+                            a = a * b;
+                        }
                     }
                     if (text2.getText().equals("0")) {
                         c = text.getText() + "*";
