@@ -512,7 +512,7 @@ public class Calculator extends JFrame implements ActionListener{
                 panel.requestFocus();
             }
             if (e.getSource().equals(negative)) {
-                if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
+                if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0"))) {
                     panel.requestFocus();
                     if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
                             && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
@@ -736,7 +736,10 @@ public class Calculator extends JFrame implements ActionListener{
                             result = a * b;
                             break;
                         case 4:
-                            result = a / b;
+                            if(b==0){
+                            divideByZero();;
+                            }
+                            else {result = a / b;}
                             break;
                         default:
                             result = 0;
@@ -927,6 +930,7 @@ public class Calculator extends JFrame implements ActionListener{
     }
     public void divideByZero(){
         text.setText("На ноль делить нельзя");
+        result=0;
         a=0;
         b=0;
         c="0";
