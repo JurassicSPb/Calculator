@@ -566,7 +566,7 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                         else a=a-b;
                     }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-2)!=-1){
+                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
                         a=a*b;
                     }
                     else {a = a + b;}
@@ -596,10 +596,10 @@ public class Calculator extends JFrame implements ActionListener{
                     && text2.getText().indexOf('/', text2.getText().length() - 1) ==-1) {
                 if (text.getText().length() != 0 && text2.getText().length() != 0) {
                     b = Double.parseDouble(text.getText());
-                    if (text2.getText().indexOf('+', text2.getText().length()-1-text.getText().length()) !=-1){
+                    if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1){
                         a=a+b;
                     }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-2)!=-1){
+                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
                         a=a*b;
                     }
                     else {
@@ -652,7 +652,6 @@ public class Calculator extends JFrame implements ActionListener{
                         if (a==0) {
                             b = 1;
                             z = Double.parseDouble(text.getText());
-                            System.out.println("*z" + z);
                             a = z * b;
                         }
                         else{
