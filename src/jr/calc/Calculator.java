@@ -586,7 +586,6 @@ public class Calculator extends JFrame implements ActionListener{
                     } else
                         text.setText(roundA + "");
                 }
-                enterFlag = 1;
                 panel.requestFocus();
             }
         }
@@ -632,7 +631,6 @@ public class Calculator extends JFrame implements ActionListener{
                     } else
                         text.setText(roundA + "");
                 }
-                enterFlag = 1;
                 panel.requestFocus();
             }
         }
@@ -681,7 +679,6 @@ public class Calculator extends JFrame implements ActionListener{
                     } else
                         text.setText(roundA + "");
                 }
-                enterFlag = 1;
                 panel.requestFocus();
                 }
             }
@@ -728,7 +725,6 @@ public class Calculator extends JFrame implements ActionListener{
                         } else
                             text.setText(roundA + "");
                     }
-                    enterFlag = 1;
                     panel.requestFocus();
                     }
                 }
