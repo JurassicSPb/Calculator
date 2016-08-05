@@ -734,7 +734,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
             }
         if (e.getSource().equals((enter))){
-            c="0";
+            c= "0";
             text2.setText(c);
             b=Double.parseDouble(text.getText());
             if (text.getText().length()!=0) {
