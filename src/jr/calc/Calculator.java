@@ -24,8 +24,6 @@ public class Calculator extends JFrame implements ActionListener{
     private int operator=0, operatorEnter=0, enterFlag=0;
     private String str1 = ".", c="", p="+";
 
-
-
     public Calculator (String s) {
         super(s);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -247,225 +245,230 @@ public class Calculator extends JFrame implements ActionListener{
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                char ch = e.getKeyChar();
-                if (ch==KeyEvent.VK_BACK_SPACE && text.getText().length()!=0) {
-                    backspace.setBorder(lowered);
-                    text.setText(text.getText().substring(0, text.getText().length()-1));
-                    c=text2.getText().substring(0, text2.getText().length()-1);
-                    if (text.getText().length()==0 || text2.getText().length()==0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf("+", text2.getText().length()-2)>0) {
-                        text.setText("0");
+                try {
+                    char ch = e.getKeyChar();
+                    if (ch == KeyEvent.VK_BACK_SPACE && text.getText().length() != 0) {
+                        backspace.setBorder(lowered);
+                        text.setText(text.getText().substring(0, text.getText().length() - 1));
+                        c = text2.getText().substring(0, text2.getText().length() - 1);
+                        if (text.getText().length() == 0 || text2.getText().length() == 0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf("+", text2.getText().length() - 2) > 0) {
+                            text.setText("0");
+                            c = "0";
+                            text2.setText(c);
+                        }
+                    }
+                    if (ch == KeyEvent.VK_ESCAPE && text.getText().length() != 0) {
                         c = "0";
+                        a = 0;
+                        b = 0;
+                        ce.setBorder(lowered);
+                        text.setText("0");
                         text2.setText(c);
                     }
-                }
-                if (ch==KeyEvent.VK_ESCAPE && text.getText().length()!=0){
-                    c="0";
-                    a=0;
-                    b=0;
-                    ce.setBorder(lowered);
-                    text.setText("0");
-                    text2.setText(c);
-                }
-                if (ch=='+'){
-                    plus.setBorder(lowered);
-                    if (text2.getText().indexOf("+", text2.getText().length() - 1) ==-1) {
-                        if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                            b = Double.parseDouble(text.getText());
-                            a = a + b;
-                            if (text2.getText().equals("0")) {
-                                c = text.getText() + "+";
+                    if (ch == '+') {
+                        plus.setBorder(lowered);
+                        if (text2.getText().indexOf("+", text2.getText().length() - 1) == -1) {
+                            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                                b = Double.parseDouble(text.getText());
+                                a = a + b;
+                                if (text2.getText().equals("0")) {
+                                    c = text.getText() + "+";
+
+                                } else {
+                                    c += "+";
+                                }
+                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                operator = 1;
+                                operatorEnter = 1;
+                                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                    text.setText((long) a + "");
+                                } else
+                                    text.setText(roundA + "");
+                            }
+                            enterFlag = 1;
+                        }
+                    }
+                    if (ch == KeyEvent.VK_ENTER) {
+                        enter.setBorder(lowered);
+                        c = "0";
+                        text2.setText(c);
+                        b = Double.parseDouble(text.getText());
+                        if (text.getText().length() != 0) {
+                            switch (operatorEnter) {
+                                case 1:
+                                    result = a + b;
+                                    break;
+                                default:
+                                    result = 0;
+                            }
+                            double roundResult = (double) Math.round(result * 1000000) / 1000000;
+                            if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                                text.setText((long) result + "");
 
                             } else {
-                                c += "+";
+                                text.setText(roundResult + "");
                             }
-                            double roundA = (double) Math.round(a * 1000000) / 1000000;
-                            operator = 1;
-                            operatorEnter = 1;
-                            if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                                text.setText((long) a + "");
-                            } else
-                                text.setText(roundA + "");
                         }
+                        a = 0;
                         enterFlag = 1;
+                        panel.requestFocus();
                     }
-                }
-                if (ch==KeyEvent.VK_ENTER){
-                    enter.setBorder(lowered);
-                    c="0";
-                    text2.setText(c);
-                    b=Double.parseDouble(text.getText());
-                    if (text.getText().length()!=0) {
-                        switch (operatorEnter){
-                            case 1: result=a+b;
-                                break;
-                            default: result=0;
+                    if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) > 0) {
+                        if (ch == KeyEvent.VK_1) {
+                            b1.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "1";
+                            } else {
+                                c += "1";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("1");
+                            } else {
+                                text.setText(text.getText() + "1");
+                            }
                         }
-                        double roundResult = (double)Math.round(result * 1000000) / 1000000;
-                        if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
-                            text.setText((long) result + "");
-
-                        } else {
-                            text.setText(roundResult + "");
+                        if (ch == KeyEvent.VK_2) {
+                            b2.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "2";
+                            } else {
+                                c += "2";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("2");
+                            } else
+                                text.setText(text.getText() + "2");
                         }
-                    }
-                    a=0;
-                    enterFlag=1;
-                    panel.requestFocus();
-                }
-                if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) >0) {
-                    if (ch == KeyEvent.VK_1) {
-                        b1.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="1";
+                        if (ch == KeyEvent.VK_3) {
+                            b3.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "3";
+                            } else {
+                                c += "3";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("3");
+                            } else
+                                text.setText(text.getText() + "3");
                         }
-                        else {c+="1";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("1");
+                        if (ch == KeyEvent.VK_4) {
+                            b4.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "4";
+                            } else {
+                                c += "4";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("4");
+                            } else
+                                text.setText(text.getText() + "4");
                         }
-                        else {text.setText(text.getText() + "1");}
-                    }
-                    if (ch==KeyEvent.VK_2){
-                        b2.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="2";
+                        if (ch == KeyEvent.VK_5) {
+                            b5.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "5";
+                            } else {
+                                c += "5";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("5");
+                            } else
+                                text.setText(text.getText() + "5");
                         }
-                        else {c+="2";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("2");
+                        if (ch == KeyEvent.VK_6) {
+                            b6.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "6";
+                            } else {
+                                c += "6";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("6");
+                            } else
+                                text.setText(text.getText() + "6");
                         }
-                        else
-                            text.setText(text.getText() + "2");
-                    }
-                    if (ch==KeyEvent.VK_3){
-                        b3.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="3";
+                        if (ch == KeyEvent.VK_7) {
+                            b7.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "7";
+                            } else {
+                                c += "7";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("7");
+                            } else
+                                text.setText(text.getText() + "7");
                         }
-                        else {c+="3";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("3");
+                        if (ch == KeyEvent.VK_8) {
+                            b8.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "8";
+                            } else {
+                                c += "8";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("8");
+                            } else
+                                text.setText(text.getText() + "8");
                         }
-                        else
-                            text.setText(text.getText() + "3");
-                    }
-                    if (ch==KeyEvent.VK_4){
-                        b4.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="4";
+                        if (ch == KeyEvent.VK_9) {
+                            b9.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "9";
+                            } else {
+                                c += "9";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("9");
+                            } else
+                                text.setText(text.getText() + "9");
                         }
-                        else {c+="4";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("4");
+                        if (ch == KeyEvent.VK_0) {
+                            b0.setBorder(lowered);
+                            if (text2.getText().equals("0")) {
+                                c = "0";
+                            } else {
+                                c += "0";
+                            }
+                            setNull();
+                            setEnterNull();
+                            if (text.getText().equals("0")) {
+                                text.setText("0");
+                            } else
+                                text.setText(text.getText() + "0");
                         }
-                        else
-                            text.setText(text.getText() + "4");
-                    }
-                    if (ch==KeyEvent.VK_5){
-                        b5.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="5";
-                        }
-                        else {c+="5";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("5");
-                        }
-                        else
-                            text.setText(text.getText() + "5");
-                    }
-                    if (ch==KeyEvent.VK_6){
-                        b6.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="6";
-                        }
-                        else {c+="6";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("6");
-                        }
-                        else
-                            text.setText(text.getText() + "6");
-                    }
-                    if (ch==KeyEvent.VK_7){
-                        b7.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="7";
-                        }
-                        else {c+="7";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("7");
-                        }
-                        else
-                            text.setText(text.getText() + "7");
-                    }
-                    if (ch==KeyEvent.VK_8){
-                        b8.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="8";
-                        }
-                        else {c+="8";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("8");
-                        }
-                        else
-                            text.setText(text.getText() + "8");
-                    }
-                    if (ch==KeyEvent.VK_9){
-                        b9.setBorder(lowered);
-                        if (text2.getText().equals("0")){
-                            c="9";
-                        }
-                        else {c+="9";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("9");
-                        }
-                        else
-                            text.setText(text.getText() + "9");
-                    }
-                    if (ch==KeyEvent.VK_0){
-                        b0.setBorder(lowered);
-                        if (text2.getText().equals("0")) {
-                            c = "0";
-                        }
-                        else {c += "0";}
-                        setNull();
-                        setEnterNull();
-                        if (text.getText().equals("0")) {
-                            text.setText("0");
-                        }
-                        else
-                            text.setText(text.getText() + "0");
-                    }
-                    if (ch==KeyEvent.VK_PERIOD || ch==KeyEvent.VK_QUOTE && text.getText().length()!=0){
-                        point.setBorder(lowered);
-                        if (text.getText().indexOf(str1)<1) {
-                            c += ".";
-                        }
-                        if (text.getText().indexOf(str1)>=1) {
-                            return;
-                        }
-                        else {
-                            text.setText(text.getText() + str1);
+                        if (ch == KeyEvent.VK_PERIOD || ch == KeyEvent.VK_QUOTE && text.getText().length() != 0) {
+                            point.setBorder(lowered);
+                            if (text.getText().indexOf(str1) < 1) {
+                                c += ".";
+                            }
+                            if (text.getText().indexOf(str1) >= 1) {
+                                return;
+                            } else {
+                                text.setText(text.getText() + str1);
+                            }
                         }
                     }
-                }
-                text2.setText(c+"");
+                    text2.setText(c + "");
+                } catch (NumberFormatException ex){}
             }
             @Override
             public void keyPressed(KeyEvent e) {}
@@ -491,231 +494,216 @@ public class Calculator extends JFrame implements ActionListener{
         });
     }
     public void actionPerformed (ActionEvent e) {
-        if (text.getText().length()==0 || text.getText().length()>=16){
-            panel.requestFocus();
-        }
-        if (e.getSource().equals(backspace) && text.getText().length()!=0){
-            text.setText(text.getText().substring(0, text.getText().length()-1));
-            c=text2.getText().substring(0, text2.getText().length()-1);
-            if (text.getText().length()==0 || text2.getText().length()==0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf('+', text2.getText().length()-2)>0
-                ||text2.getText().indexOf('-', text2.getText().length()-2)>0 ||text2.getText().indexOf('*', text2.getText().length()-2)>0 ||text2.getText().indexOf('/', text2.getText().length()-2)>0){
-                text.setText("0");
-                a=0;
-                b=0;
-                c="0";
+        try {
+            if (text.getText().length() == 0 || text.getText().length() >= 16) {
+                panel.requestFocus();
+            }
+            if (e.getSource().equals(backspace) && text.getText().length() != 0) {
+                text.setText(text.getText().substring(0, text.getText().length() - 1));
+                c = text2.getText().substring(0, text2.getText().length() - 1);
+                if (text.getText().length() == 0 || text2.getText().length() == 0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf('+', text2.getText().length() - 2) > 0
+                        || text2.getText().indexOf('-', text2.getText().length() - 2) > 0 || text2.getText().indexOf('*', text2.getText().length() - 2) > 0 || text2.getText().indexOf('/', text2.getText().length() - 2) > 0) {
+                    text.setText("0");
+                    a = 0;
+                    b = 0;
+                    c = "0";
+                    text2.setText(c);
+                }
+                panel.requestFocus();
+            }
+            if (e.getSource().equals(negative)) {
+                if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
+                    panel.requestFocus();
+                    if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                            && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                        if (text.getText().indexOf('-', 0) == -1) {
+                            text.setText("-" + text.getText());
+                            c = c + "<negative>";
+                        } else {
+                            text.setText(text.getText().substring(1, text.getText().length()));
+                            int index = text2.getText().lastIndexOf('<');
+                            if (index != -1) {
+                                c = text2.getText().substring(0, index);
+                            }
+                            text2.setText(c);
+                        }
+                    }
+                }
+                panel.requestFocus();
+            }
+            if (e.getSource().equals(ce)) {
+                c = "0";
                 text2.setText(c);
-            }
-            panel.requestFocus();
-        }
-        if(e.getSource().equals(negative)) {
-            if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
-                panel.requestFocus();
-                if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
-                        && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
-                    if (text.getText().indexOf('-', 0) == -1) {
-                        text.setText("-" + text.getText());
-                        c = c + "<negative>";
-                    } else {
-                        text.setText(text.getText().substring(1, text.getText().length()));
-                        int index = text2.getText().lastIndexOf('<');
-                        if (index != -1) {
-                            c = text2.getText().substring(0, index);
-                        }
-                        text2.setText(c);
-                    }
-                }
-            }
-            panel.requestFocus();
-        }
-        if (e.getSource().equals(ce)){
-            c="0";
-            text2.setText(c);
-            text.setText("0");
-            a=0;
-            b=0;
-            panel.requestFocus();
-        }
-        if (e.getSource().equals(percent)) {
-            panel.requestFocus();
-            if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                if (!(text2.getText().equals("0"))) {
-                    b = Double.parseDouble(text.getText());
-                    result = (a * b) / 100;
-                    c = c + "%";
-                    double roundA = (double) Math.round(result * 1000000) / 1000000;
-                    if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
-                        text.setText((long) result + "");
-                    } else
-                        text.setText(roundA + "");
-                }
+                text.setText("0");
+                a = 0;
+                b = 0;
                 panel.requestFocus();
             }
-        }
-        if (e.getSource().equals(plus)) {
-            panel.requestFocus();
-            if (text2.getText().indexOf('+', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('-', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('*', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('/', text2.getText().length() - 1) ==-1) {
+            if (e.getSource().equals(percent)) {
+                panel.requestFocus();
                 if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    b = Double.parseDouble(text.getText());
-                    if (text2.getText().indexOf('-', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        if (a==0) {
-                            a = Math.abs(a - b);
-                        }
-                        else a=a-b;
+                    if (!(text2.getText().equals("0"))) {
+                        b = Double.parseDouble(text.getText());
+                        result = (a * b) / 100;
+                        c = c + "%";
+                        double roundA = (double) Math.round(result * 1000000) / 1000000;
+                        if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                            text.setText((long) result + "");
+                        } else
+                            text.setText(roundA + "");
                     }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a*b;
-                    }
-                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a/b;
-                    }
-                    else {a = a + b;}
-                    if (text2.getText().equals("0")) {
-                        c = text.getText() + "+";
-
-                    } else {
-                        c += "+";
-                    }
-                    double roundA = (double) Math.round(a * 1000000) / 1000000;
-                    operator = 1;
-                    operatorEnter = 1;
-                    if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                        text.setText((long) a + "");
-                    } else
-                        text.setText(roundA + "");
+                    panel.requestFocus();
                 }
-                panel.requestFocus();
             }
-        }
-        if (e.getSource().equals(minus)) {
-            panel.requestFocus();
-            if (text2.getText().indexOf('+', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('-', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('*', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('/', text2.getText().length() - 1) ==-1) {
-                if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    b = Double.parseDouble(text.getText());
-                    if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a+b;
-                    }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a*b;
-                    }
-                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a/b;
-                    }
-                    else {
-                        if (a==0) {
-                            b = 0;
-                            z = Double.parseDouble(text.getText());
-                            a = z - b;
-                        }
-                        else {
-                            b = Double.parseDouble(text.getText());
-                            a = a - b;
-                        }
-                    }
-                    if (text2.getText().equals("0")) {
-                        c = text.getText() + "-";
-
-                    } else {
-                        c += "-";
-                    }
-                    double roundA = (double) Math.round(a * 1000000) / 1000000;
-                    operator = 2;
-                    operatorEnter = 2;
-                    if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                        text.setText((long) a + "");
-                    } else
-                        text.setText(roundA + "");
-                }
+            if (e.getSource().equals(plus)) {
                 panel.requestFocus();
-            }
-        }
-        if (e.getSource().equals((multiplication))) {
-            panel.requestFocus();
-            if (text2.getText().indexOf('+', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('-', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('*', text2.getText().length() - 1) ==-1
-                    && text2.getText().indexOf('/', text2.getText().length() - 1) ==-1){
-                if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    b = Double.parseDouble(text.getText());
-                    if (text2.getText().indexOf('-', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        if (a==0) {
-                            a = Math.abs(a - b);
-                        }
-                        else a=a-b;
-                    }
-                    else if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1) {
-                        a = a + b;
-                    }
-                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a = a/b;
-                    }
-                    else {
-                        if (a==0) {
-                            b = 1;
-                            z = Double.parseDouble(text.getText());
-                            a = z * b;
-                        }
-                        else{
-                            b = Double.parseDouble(text.getText());
+                if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                    if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                        b = Double.parseDouble(text.getText());
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            if (a == 0) {
+                                a = Math.abs(a - b);
+                            } else a = a - b;
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
                             a = a * b;
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a / b;
+                        } else {
+                            a = a + b;
                         }
-                    }
-                    if (text2.getText().equals("0")) {
-                        c = text.getText() + "*";
+                        if (text2.getText().equals("0")) {
+                            c = text.getText() + "+";
 
-                    } else {
-                        c += "*";
+                        } else {
+                            c += "+";
+                        }
+                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        operator = 1;
+                        operatorEnter = 1;
+                        if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                            text.setText((long) a + "");
+                        } else
+                            text.setText(roundA + "");
                     }
-                    double roundA = (double) Math.round(a * 1000000) / 1000000;
-                    operator = 3;
-                    operatorEnter = 3;
-                    if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                        text.setText((long) a + "");
-                    } else
-                        text.setText(roundA + "");
-                }
-                panel.requestFocus();
+                    panel.requestFocus();
                 }
             }
-        if (e.getSource().equals(division)) {
-            panel.requestFocus();
-            if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
-                    && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
-                    && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
-                    && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
-                if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    b = Double.parseDouble(text.getText());
-                    if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
-                        if (a == 0) {
-                            a = Math.abs(a - b);
-                            }
-                            else a = a - b;
-                    }
-                    else if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1) {
-                        a = a + b;
-                    }
-                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
-                        a=a*b;
-                    }
-                    else {
-                        if (a == 0) {
-                            b = 1;
-                            z = Double.parseDouble(text.getText());
-                            a = z / b;
-                        }
-                        else {
-                            if (b==0){
-                                divideByZero();
-                            }
-                            b = Double.parseDouble(text.getText());
+            if (e.getSource().equals(minus)) {
+                panel.requestFocus();
+                if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                    if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                        b = Double.parseDouble(text.getText());
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a + b;
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a * b;
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
                             a = a / b;
+                        } else {
+                            if (a == 0) {
+                                b = 0;
+                                z = Double.parseDouble(text.getText());
+                                a = z - b;
+                            } else {
+                                b = Double.parseDouble(text.getText());
+                                a = a - b;
+                            }
                         }
+                        if (text2.getText().equals("0")) {
+                            c = text.getText() + "-";
+
+                        } else {
+                            c += "-";
+                        }
+                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        operator = 2;
+                        operatorEnter = 2;
+                        if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                            text.setText((long) a + "");
+                        } else
+                            text.setText(roundA + "");
                     }
+                    panel.requestFocus();
+                }
+            }
+            if (e.getSource().equals((multiplication))) {
+                panel.requestFocus();
+                if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                    if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                        b = Double.parseDouble(text.getText());
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            if (a == 0) {
+                                a = Math.abs(a - b);
+                            } else a = a - b;
+                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a + b;
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a / b;
+                        } else {
+                            if (a == 0) {
+                                b = 1;
+                                z = Double.parseDouble(text.getText());
+                                a = z * b;
+                            } else {
+                                b = Double.parseDouble(text.getText());
+                                a = a * b;
+                            }
+                        }
+                        if (text2.getText().equals("0")) {
+                            c = text.getText() + "*";
+
+                        } else {
+                            c += "*";
+                        }
+                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        operator = 3;
+                        operatorEnter = 3;
+                        if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                            text.setText((long) a + "");
+                        } else
+                            text.setText(roundA + "");
+                    }
+                    panel.requestFocus();
+                }
+            }
+            if (e.getSource().equals(division)) {
+                panel.requestFocus();
+                if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                        && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                    if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                        b = Double.parseDouble(text.getText());
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            if (a == 0) {
+                                a = Math.abs(a - b);
+                            } else a = a - b;
+                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a + b;
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                            a = a * b;
+                        } else {
+                            if (a == 0) {
+                                b = 1;
+                                z = Double.parseDouble(text.getText());
+                                a = z / b;
+                            } else {
+                                if (b == 0) {
+                                    divideByZero();
+                                }
+                                b = Double.parseDouble(text.getText());
+                                a = a / b;
+                            }
+                        }
                         if (text2.getText().equals("0")) {
                             c = text.getText() + "/";
                         } else {
@@ -730,196 +718,199 @@ public class Calculator extends JFrame implements ActionListener{
                             text.setText(roundA + "");
                     }
                     panel.requestFocus();
+                }
+            }
+            if (e.getSource().equals((enter))) {
+                c = "0";
+                text2.setText(c);
+                b = Double.parseDouble(text.getText());
+                if (text.getText().length() != 0) {
+                    switch (operatorEnter) {
+                        case 1:
+                            result = a + b;
+                            break;
+                        case 2:
+                            result = a - b;
+                            break;
+                        case 3:
+                            result = a * b;
+                            break;
+                        case 4:
+                            result = a / b;
+                            break;
+                        default:
+                            result = 0;
+                    }
+                    double roundResult = (double) Math.round(result * 1000000) / 1000000;
+                    if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                        text.setText((long) result + "");
+
+                    } else {
+                        text.setText(roundResult + "");
                     }
                 }
-        if (e.getSource().equals((enter))){
-            c= "0";
-            text2.setText(c);
-            b=Double.parseDouble(text.getText());
-            if (text.getText().length()!=0) {
-                switch (operatorEnter){
-                    case 1: result=a+b;
-                        break;
-                    case 2: result=a-b;
-                        break;
-                    case 3: result=a*b;
-                        break;
-                    case 4: result=a/b;
-                        break;
-                    default: result=0;
-                }
-                double roundResult = (double)Math.round(result * 1000000) / 1000000;
-                if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
-                    text.setText((long) result + "");
-
-                } else {
-                    text.setText(roundResult + "");
-                }
-            }
-            a=0;
-            operatorEnter=0;
-            enterFlag=1;
-            panel.requestFocus();
-        }
-        if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) >0
-                || text2.getText().indexOf("-", text2.getText().length() - 1) >0) {
-            if (e.getSource().equals(b1)) {
-                if (text2.getText().equals("0")){
-                    c="1";
-                }
-                else {c+="1";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("1");
-                }
-                else
-                    text.setText(text.getText() + "1");
+                a = 0;
+                operatorEnter = 0;
+                enterFlag = 1;
                 panel.requestFocus();
             }
-            if (e.getSource().equals(b2)) {
-                if (text2.getText().equals("0")){
-                    c="2";
-                }
-                else {c+="2";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("2");
-                }
-                else
-                    text.setText(text.getText() + "2");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b3)) {
-                if (text2.getText().equals("0")){
-                    c="3";
-                }
-                else {c+="3";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("3");
-                }
-                else
-                    text.setText(text.getText() + "3");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b4)) {
-                if (text2.getText().equals("0")){
-                    c="4";
-                }
-                else {c+="4";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("4");
-                }
-                else
-                    text.setText(text.getText() + "4");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b5)) {
-                if (text2.getText().equals("0")){
-                    c="5";
-                }
-                else {c+="5";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("5");
-                }
-                else
-                    text.setText(text.getText() + "5");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b6)) {
-                if (text2.getText().equals("0")){
-                    c="6";
-                }
-                else {c+="6";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("6");
-                }
-                else
-                    text.setText(text.getText() + "6");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b7)) {
-                if (text2.getText().equals("0")) {
-                    c = "7";
-                }
-                else {c+="7";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("7");
-                }
-                else
-                    text.setText(text.getText() + "7");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b8)) {
-                if(text2.getText().equals("0")){
-                    c="8";
-                }
-                else {c+="8";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("8");
-                }
-                else
-                    text.setText(text.getText() + "8");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b9)) {
-                if (text2.getText().equals("0")){
-                    c="9";
-                }
-                else {c+="9";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("9");
-                }
-                else
-                    text.setText(text.getText() + "9");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(b0)) {
-                if (text2.getText().equals("0")) {
-                    c = "0";
-                }
-                else {c += "0";}
-                setNull();
-                setEnterNull();
-                if (text.getText().equals("0")) {
-                    text.setText("0");
-                }
-                else
-                    text.setText(text.getText() + "0");
-                panel.requestFocus();
-            }
-            if (e.getSource().equals(point) && text.getText().length()!=0){
-                if (text.getText().indexOf(str1)<1) {
-                    c += ".";
-                }
-                if (text.getText().indexOf(str1)>=1)
-                {
-                    panel.requestFocus();
-                    return;
-                }
-                else
-                {
-                    text.setText(text.getText() + str1);
+            if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) > 0
+                    || text2.getText().indexOf("-", text2.getText().length() - 1) > 0) {
+                if (e.getSource().equals(b1)) {
+                    if (text2.getText().equals("0")) {
+                        c = "1";
+                    } else {
+                        c += "1";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("1");
+                    } else
+                        text.setText(text.getText() + "1");
                     panel.requestFocus();
                 }
+                if (e.getSource().equals(b2)) {
+                    if (text2.getText().equals("0")) {
+                        c = "2";
+                    } else {
+                        c += "2";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("2");
+                    } else
+                        text.setText(text.getText() + "2");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b3)) {
+                    if (text2.getText().equals("0")) {
+                        c = "3";
+                    } else {
+                        c += "3";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("3");
+                    } else
+                        text.setText(text.getText() + "3");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b4)) {
+                    if (text2.getText().equals("0")) {
+                        c = "4";
+                    } else {
+                        c += "4";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("4");
+                    } else
+                        text.setText(text.getText() + "4");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b5)) {
+                    if (text2.getText().equals("0")) {
+                        c = "5";
+                    } else {
+                        c += "5";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("5");
+                    } else
+                        text.setText(text.getText() + "5");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b6)) {
+                    if (text2.getText().equals("0")) {
+                        c = "6";
+                    } else {
+                        c += "6";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("6");
+                    } else
+                        text.setText(text.getText() + "6");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b7)) {
+                    if (text2.getText().equals("0")) {
+                        c = "7";
+                    } else {
+                        c += "7";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("7");
+                    } else
+                        text.setText(text.getText() + "7");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b8)) {
+                    if (text2.getText().equals("0")) {
+                        c = "8";
+                    } else {
+                        c += "8";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("8");
+                    } else
+                        text.setText(text.getText() + "8");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b9)) {
+                    if (text2.getText().equals("0")) {
+                        c = "9";
+                    } else {
+                        c += "9";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("9");
+                    } else
+                        text.setText(text.getText() + "9");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(b0)) {
+                    if (text2.getText().equals("0")) {
+                        c = "0";
+                    } else {
+                        c += "0";
+                    }
+                    setNull();
+                    setEnterNull();
+                    if (text.getText().equals("0")) {
+                        text.setText("0");
+                    } else
+                        text.setText(text.getText() + "0");
+                    panel.requestFocus();
+                }
+                if (e.getSource().equals(point) && text.getText().length() != 0) {
+                    if (text.getText().indexOf(str1) < 1) {
+                        c += ".";
+                    }
+                    if (text.getText().indexOf(str1) >= 1) {
+                        panel.requestFocus();
+                        return;
+                    } else {
+                        text.setText(text.getText() + str1);
+                        panel.requestFocus();
+                    }
+                }
             }
-        }
-        text2.setText(c+"");
+            text2.setText(c + "");
+        } catch (NumberFormatException ex){}
     }
     public void setNull() {
         if (operator == 1 || operator == 2 || operator == 3 || operator == 4) {
@@ -935,10 +926,10 @@ public class Calculator extends JFrame implements ActionListener{
 
     }
     public void divideByZero(){
-        text.setText("0");
+        text.setText("На ноль делить нельзя");
         a=0;
         b=0;
-        c="<На ноль делитьнельзя>";
+        c="0";
         text2.setText(c);
     }
 }
