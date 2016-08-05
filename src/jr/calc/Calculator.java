@@ -537,6 +537,7 @@ public class Calculator extends JFrame implements ActionListener{
                 text.setText("0");
                 a = 0;
                 b = 0;
+                result=0;
                 panel.requestFocus();
             }
             if (e.getSource().equals(percent)) {
@@ -571,6 +572,9 @@ public class Calculator extends JFrame implements ActionListener{
                             a = a * b;
                         } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
                             a = a / b;
+                            if (b==0){
+                                divideByZero();;
+                            }
                         } else {
                             a = a + b;
                         }
