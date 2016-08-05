@@ -541,6 +541,7 @@ public class Calculator extends JFrame implements ActionListener{
                 System.out.println("%a"+a);
                 System.out.println("%b"+b);
                 result = (a * b) / 100;
+                c=c+"%";
                 double roundA = (double) Math.round(result * 1000000) / 1000000;
                 if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                     text.setText((long) result + "");
@@ -699,6 +700,9 @@ public class Calculator extends JFrame implements ActionListener{
                     text.setText(roundResult + "");
                 }
             }
+            System.out.println("a:"+a);
+            System.out.println("b:"+b);
+            System.out.println("result:"+result);
             a=0;
             operatorEnter=0;
             enterFlag=1;
