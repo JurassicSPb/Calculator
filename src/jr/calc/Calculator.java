@@ -706,15 +706,15 @@ public class Calculator extends JFrame implements ActionListener{
                         a=a*b;
                     }
                     else {
-                        if (a==0) {
+                        if (a == 0) {
                             b = 1;
                             z = Double.parseDouble(text.getText());
                             a = z / b;
-                        }
-                        else {
+                        } else {
                             b = Double.parseDouble(text.getText());
                             a = a / b;
                         }
+                    }
                         if (text2.getText().equals("0")) {
                             c = text.getText() + "/";
                         } else {
@@ -732,7 +732,6 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                     }
                 }
-            }
         if (e.getSource().equals((enter))){
             c= "0";
             text2.setText(c);
