@@ -498,7 +498,7 @@ public class Calculator extends JFrame implements ActionListener{
             text.setText(text.getText().substring(0, text.getText().length()-1));
             c=text2.getText().substring(0, text2.getText().length()-1);
             if (text.getText().length()==0 || text2.getText().length()==0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf('+', text2.getText().length()-2)>0
-                    ||text2.getText().indexOf('-', text2.getText().length()-2)>0){
+                ||text2.getText().indexOf('-', text2.getText().length()-2)>0 ||text2.getText().indexOf('*', text2.getText().length()-2)>0 ||text2.getText().indexOf('/', text2.getText().length()-2)>0){
                 text.setText("0");
                 a=0;
                 b=0;
@@ -536,19 +536,21 @@ public class Calculator extends JFrame implements ActionListener{
             panel.requestFocus();
         }
         if (e.getSource().equals(percent)) {
-            if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0")) && !(text2.getText().equals("0"))) {
-                b = Double.parseDouble(text.getText());
-                System.out.println("%a"+a);
-                System.out.println("%b"+b);
-                result = (a * b) / 100;
-                c=c+"%";
-                double roundA = (double) Math.round(result * 1000000) / 1000000;
-                if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
-                    text.setText((long) result + "");
-                } else
-                    text.setText(roundA + "");
-            }
             panel.requestFocus();
+            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                if (!(text2.getText().equals("0"))) {
+                    System.out.println(text2.getText());
+                    b = Double.parseDouble(text.getText());
+                    result = (a * b) / 100;
+                    c = c + "%";
+                    double roundA = (double) Math.round(result * 1000000) / 1000000;
+                    if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
+                        text.setText((long) result + "");
+                    } else
+                        text.setText(roundA + "");
+                }
+                panel.requestFocus();
+            }
         }
         if (e.getSource().equals(plus)) {
             panel.requestFocus();
