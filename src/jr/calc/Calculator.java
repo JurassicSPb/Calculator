@@ -568,6 +568,9 @@ public class Calculator extends JFrame implements ActionListener{
                     else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
                         a=a*b;
                     }
+                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
+                        a=a/b;
+                    }
                     else {a = a + b;}
                     if (text2.getText().equals("0")) {
                         c = text.getText() + "+";
@@ -600,6 +603,9 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
                         a=a*b;
+                    }
+                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
+                        a=a/b;
                     }
                     else {
                         if (a==0) {
@@ -647,6 +653,9 @@ public class Calculator extends JFrame implements ActionListener{
                     else if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1) {
                         a = a + b;
                     }
+                    else if (text2.getText().indexOf('/', text2.getText().length()-1 - text.getText().length()) !=-1){
+                        a = a/b;
+                    }
                     else {
                         if (a==0) {
                             b = 1;
@@ -676,6 +685,54 @@ public class Calculator extends JFrame implements ActionListener{
                 panel.requestFocus();
                 }
             }
+        if (e.getSource().equals(division)) {
+            panel.requestFocus();
+            if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                    && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                    && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                    && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                    b = Double.parseDouble(text.getText());
+                    if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        if (a == 0) {
+                            a = Math.abs(a - b);
+                            }
+                            else a = a - b;
+                    }
+                    else if (text2.getText().indexOf('+', text2.getText().length()-1 - text.getText().length()) !=-1) {
+                        a = a + b;
+                    }
+                    else if (text2.getText().indexOf('*', text2.getText().length()-1 - text.getText().length()) !=-1){
+                        a=a*b;
+                    }
+                    else {
+                        if (a==0) {
+                            b = 1;
+                            z = Double.parseDouble(text.getText());
+                            a = z / b;
+                        }
+                        else {
+                            b = Double.parseDouble(text.getText());
+                            a = a / b;
+                        }
+                        if (text2.getText().equals("0")) {
+                            c = text.getText() + "/";
+                        } else {
+                            c += "/";
+                        }
+                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        operator = 4;
+                        operatorEnter = 4;
+                        if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                            text.setText((long) a + "");
+                        } else
+                            text.setText(roundA + "");
+                    }
+                    enterFlag = 1;
+                    panel.requestFocus();
+                    }
+                }
+            }
         if (e.getSource().equals((enter))){
             c="0";
             text2.setText(c);
@@ -688,8 +745,9 @@ public class Calculator extends JFrame implements ActionListener{
                         break;
                     case 3: result=a*b;
                         break;
+                    case 4: result=a/b;
+                        break;
                     default: result=0;
-
                 }
                 double roundResult = (double)Math.round(result * 1000000) / 1000000;
                 if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
@@ -865,7 +923,7 @@ public class Calculator extends JFrame implements ActionListener{
         text2.setText(c+"");
     }
     public void setNull() {
-        if (operator == 1 || operator == 2 || operator == 3) {
+        if (operator == 1 || operator == 2 || operator == 3 || operator == 4) {
             text.setText("");
             operator = 0;
         }
