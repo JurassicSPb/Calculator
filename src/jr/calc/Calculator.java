@@ -571,19 +571,19 @@ public class Calculator extends JFrame implements ActionListener{
                         c="0";
                     }
                     if (!(text.getText().equals("0"))) {
-                        a = Double.parseDouble(text.getText());
-                        a = Math.sqrt(a);
-                        if (a<0){
-                            a=0;
+                        b = Double.parseDouble(text.getText());
+                        b = Math.sqrt(b);
+                        if (b<0){
+                            b=0;
                             text.setText("0");
                             c="Недопустимый ввод";
                             text2.setText(c);
                         }
                         else{
                             c=c+"<sqrt>";
-                            double roundA = (double) Math.round(a * 1000000) / 1000000;
-                            if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
-                                text.setText((long) a + "");
+                            double roundA = (double) Math.round(b * 1000000) / 1000000;
+                            if ((b == Math.floor(b)) && !Double.isInfinite(b)) {
+                                text.setText((long) b + "");
                             }
                             else {text.setText(roundA + "");}
                         }
@@ -618,6 +618,7 @@ public class Calculator extends JFrame implements ActionListener{
                             else {a = a / b;}
                         } else {
                             a = a + b;
+                            System.out.println(a);
                         }
                         double roundA = (double) Math.round(a * 1000000) / 1000000;
                         operator = 1;
