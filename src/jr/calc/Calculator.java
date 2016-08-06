@@ -512,24 +512,29 @@ public class Calculator extends JFrame implements ActionListener{
                 panel.requestFocus();
             }
             if (e.getSource().equals(negative)) {
-                if (text.getText().length() != 0 && text2.getText().length() != 0 && !(text.getText().equals("0"))) {
-                    panel.requestFocus();
-                    if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
-                            && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
-                        if (text.getText().indexOf('-', 0) == -1) {
-                            text.setText("-" + text.getText());
-                            c = c + "<negative>";
-                        } else {
-                            text.setText(text.getText().substring(1, text.getText().length()));
-                            int index = text2.getText().lastIndexOf('<');
-                            if (index != -1) {
-                                c = text2.getText().substring(0, index);
+                panel.requestFocus();
+                if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                    if ((text.getText().equals("0"))) {
+                        c = "0";
+                    }
+                    if (!(text.getText().equals("0"))) {
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                            if (text.getText().indexOf('-', 0) == -1) {
+                                text.setText("-" + text.getText());
+                                c = c + "<negative>";
+                            } else {
+                                text.setText(text.getText().substring(1, text.getText().length()));
+                                int index = text2.getText().lastIndexOf('<');
+                                if (index != -1) {
+                                    c = text2.getText().substring(0, index);
+                                }
+                                text2.setText(c);
                             }
-                            text2.setText(c);
                         }
+                        panel.requestFocus();
                     }
                 }
-                panel.requestFocus();
             }
             if (e.getSource().equals(ce)) {
                 c = "0";
@@ -543,7 +548,10 @@ public class Calculator extends JFrame implements ActionListener{
             if (e.getSource().equals(percent)) {
                 panel.requestFocus();
                 if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    if (!(text2.getText().equals("0"))) {
+                    if ((text.getText().equals("0"))){
+                        c="0";
+                    }
+                    if (!(text.getText().equals("0"))) {
                         b = Double.parseDouble(text.getText());
                         result = (a * b) / 100;
                         c = c + "%";
@@ -556,6 +564,34 @@ public class Calculator extends JFrame implements ActionListener{
                     panel.requestFocus();
                 }
             }
+            if (e.getSource().equals(sqrt)){
+                panel.requestFocus();
+                if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                    if ((text.getText().equals("0"))){
+                        c="0";
+                    }
+                    if (!(text.getText().equals("0"))) {
+                        a = Double.parseDouble(text.getText());
+                        a = Math.sqrt(a);
+                        System.out.println(a);
+                        if (a<0){
+                            a=0;
+                            text.setText("0");
+                            c="Недопустимый ввод";
+                            text2.setText(c);
+                        }
+                        else{
+                            c=c+"<sqrt>";
+                            double roundA = (double) Math.round(a * 1000000) / 1000000;
+                            if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                text.setText((long) a + "");
+                            }
+                            else {text.setText(roundA + "");}
+                        }
+                        }
+                    panel.requestFocus();
+                    }
+                }
             if (e.getSource().equals(plus)) {
                 panel.requestFocus();
                 if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
