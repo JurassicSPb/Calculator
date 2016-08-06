@@ -573,7 +573,6 @@ public class Calculator extends JFrame implements ActionListener{
                     if (!(text.getText().equals("0"))) {
                         a = Double.parseDouble(text.getText());
                         a = Math.sqrt(a);
-                        System.out.println(a);
                         if (a<0){
                             a=0;
                             text.setText("0");
