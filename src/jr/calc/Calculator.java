@@ -248,34 +248,54 @@ public class Calculator extends JFrame implements ActionListener{
                 try {
                     char ch = e.getKeyChar();
                     if (ch == KeyEvent.VK_BACK_SPACE && text.getText().length() != 0) {
-                        backspace.setBorder(lowered);
+                        ce.setBorder(lowered);
                         text.setText(text.getText().substring(0, text.getText().length() - 1));
                         c = text2.getText().substring(0, text2.getText().length() - 1);
-                        if (text.getText().length() == 0 || text2.getText().length() == 0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf("+", text2.getText().length() - 2) > 0) {
+                        if (text.getText().length() == 0 || text2.getText().length() == 0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf('+', text2.getText().length() - 2) > 0
+                                || text2.getText().indexOf('-', text2.getText().length() - 2) > 0 || text2.getText().indexOf('*', text2.getText().length() - 2) > 0 || text2.getText().indexOf('/', text2.getText().length() - 2) > 0) {
                             text.setText("0");
+                            a = 0;
+                            b = 0;
                             c = "0";
                             text2.setText(c);
                         }
                     }
                     if (ch == KeyEvent.VK_ESCAPE && text.getText().length() != 0) {
+                        ce.setBorder(lowered);
                         c = "0";
+                        text2.setText(c);
+                        text.setText("0");
                         a = 0;
                         b = 0;
-                        ce.setBorder(lowered);
-                        text.setText("0");
-                        text2.setText(c);
+                        result=0;
                     }
                     if (ch == '+') {
                         plus.setBorder(lowered);
-                        if (text2.getText().indexOf("+", text2.getText().length() - 1) == -1) {
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
                             if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                                b = Double.parseDouble(text.getText());
-                                a = a + b;
                                 if (text2.getText().equals("0")) {
                                     c = text.getText() + "+";
 
                                 } else {
                                     c += "+";
+                                }
+                                b = Double.parseDouble(text.getText());
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (a == 0) {
+                                        a = Math.abs(a - b);
+                                    } else a = a - b;
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a * b;
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (b==0){
+                                        divideByZero();
+                                    }
+                                    else {a = a / b;}
+                                } else {
+                                    a = a + b;
                                 }
                                 double roundA = (double) Math.round(a * 1000000) / 1000000;
                                 operator = 1;
@@ -285,10 +305,139 @@ public class Calculator extends JFrame implements ActionListener{
                                 } else
                                     text.setText(roundA + "");
                             }
-                            enterFlag = 1;
                         }
                     }
-                    if (ch == KeyEvent.VK_ENTER) {
+                    if (ch == '-') {
+                        minus.setBorder(lowered);
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                                if (text2.getText().equals("0")) {
+                                    c = text.getText() + "-";
+                                } else {
+                                    c += "-";
+                                }
+                                b = Double.parseDouble(text.getText());
+                                if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a + b;
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a * b;
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (b==0){
+                                        divideByZero();
+                                    }
+                                    else {a = a / b;}
+                                } else {
+                                    if (a == 0) {
+                                        b = 0;
+                                        z = Double.parseDouble(text.getText());
+                                        a = z - b;
+                                    } else {
+                                        b = Double.parseDouble(text.getText());
+                                        a = a - b;
+                                    }
+                                }
+                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                operator = 2;
+                                operatorEnter = 2;
+                                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                    text.setText((long) a + "");
+                                } else
+                                    text.setText(roundA + "");
+                            }
+                        }
+                    }
+                    if (ch=='*'){
+                        multiplication.setBorder(lowered);
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                                if (text2.getText().equals("0")) {
+                                    c = text.getText() + "*";
+
+                                } else {
+                                    c += "*";
+                                }
+                                b = Double.parseDouble(text.getText());
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (a == 0) {
+                                        a = Math.abs(a - b);
+                                    } else a = a - b;
+                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a + b;
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (b==0){
+                                        divideByZero();
+                                    }
+                                    else {a = a / b;}
+                                } else {
+                                    if (a == 0) {
+                                        b = 1;
+                                        z = Double.parseDouble(text.getText());
+                                        a = z * b;
+                                    } else {
+                                        b = Double.parseDouble(text.getText());
+                                        a = a * b;
+                                    }
+                                }
+                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                operator = 3;
+                                operatorEnter = 3;
+                                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                    text.setText((long) a + "");
+                                } else
+                                    text.setText(roundA + "");
+                            }
+                        }
+                    }
+                    if (ch == '/'){
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                                && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
+                            if (text.getText().length() != 0 && text2.getText().length() != 0) {
+                                if (text2.getText().equals("0")) {
+                                    c = text.getText() + "/";
+                                } else {
+                                    c += "/";
+                                }
+                                b = Double.parseDouble(text.getText());
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    if (a == 0) {
+                                        a = Math.abs(a - b);
+                                    } else a = a - b;
+                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a + b;
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                    a = a * b;
+                                } else {
+                                    if (a == 0) {
+                                        b = 1;
+                                        z = Double.parseDouble(text.getText());
+                                        a = z / b;
+                                    } else {
+                                        b = Double.parseDouble(text.getText());
+                                        if (b == 0) {
+                                            divideByZero();
+                                        }
+                                        else {a = a / b;}
+                                    }
+                                }
+                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                operator = 4;
+                                operatorEnter = 4;
+                                if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
+                                    text.setText((long) a + "");
+                                } else
+                                    text.setText(roundA + "");
+                            }
+                        }
+                    }
+                        if (ch == KeyEvent.VK_ENTER) {
                         enter.setBorder(lowered);
                         c = "0";
                         text2.setText(c);
@@ -297,6 +446,18 @@ public class Calculator extends JFrame implements ActionListener{
                             switch (operatorEnter) {
                                 case 1:
                                     result = a + b;
+                                    break;
+                                case 2:
+                                    result = a - b;
+                                    break;
+                                case 3:
+                                    result = a * b;
+                                    break;
+                                case 4:
+                                    if(b==0){
+                                        divideByZero();
+                                    }
+                                    else {result = a / b;}
                                     break;
                                 default:
                                     result = 0;
@@ -310,10 +471,12 @@ public class Calculator extends JFrame implements ActionListener{
                             }
                         }
                         a = 0;
+                        operatorEnter = 0;
                         enterFlag = 1;
-                        panel.requestFocus();
                     }
-                    if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) > 0) {
+                    if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) > 0
+                            || text2.getText().indexOf("-", text2.getText().length() - 1) > 0 || text2.getText().indexOf("*", text2.getText().length() - 1) > 0
+                            || text2.getText().indexOf("/", text2.getText().length() - 1) > 0) {
                         if (ch == KeyEvent.VK_1) {
                             b1.setBorder(lowered);
                             if (text2.getText().equals("0")) {
@@ -489,6 +652,9 @@ public class Calculator extends JFrame implements ActionListener{
                 ce.setBorder(compound);
                 point.setBorder(compound);
                 plus.setBorder(compound);
+                minus.setBorder(compound);
+                multiplication.setBorder(compound);
+                division.setBorder(compound);
                 enter.setBorder(compound);
             }
         });
@@ -816,7 +982,8 @@ public class Calculator extends JFrame implements ActionListener{
                 panel.requestFocus();
             }
             if (text.getText().length() < 16 || text2.getText().indexOf("+", text2.getText().length() - 1) > 0
-                    || text2.getText().indexOf("-", text2.getText().length() - 1) > 0) {
+                    || text2.getText().indexOf("-", text2.getText().length() - 1) > 0 || text2.getText().indexOf("*", text2.getText().length() - 1) > 0
+                    || text2.getText().indexOf("/", text2.getText().length() - 1) > 0) {
                 if (e.getSource().equals(b1)) {
                     if (text2.getText().equals("0")) {
                         c = "1";
