@@ -522,7 +522,12 @@ public class Calculator extends JFrame implements ActionListener{
                                 && text2.getText().indexOf('*', text2.getText().length() - 1) == -1 && text2.getText().indexOf('/', text2.getText().length() - 1) == -1) {
                             if (text.getText().indexOf('-', 0) == -1) {
                                 text.setText("-" + text.getText());
-                                c = c + "<negative>";
+                                if (text2.getText().equals("0")) {
+                                    c = text.getText().substring(1, text.getText().length())+ "<negate>";
+                                    text2.setText(c);
+                                } else {
+                                    c += "<negate>";
+                                }
                             } else {
                                 text.setText(text.getText().substring(1, text.getText().length()));
                                 int index = text2.getText().lastIndexOf('<');
@@ -554,7 +559,11 @@ public class Calculator extends JFrame implements ActionListener{
                     if (!(text.getText().equals("0"))) {
                         b = Double.parseDouble(text.getText());
                         result = (a * b) / 100;
-                        c = c + "%";
+                        if (text2.getText().equals("0")) {
+                            c = text.getText() + "%";
+                        } else {
+                            c += "%";
+                        }
                         double roundA = (double) Math.round(result * 1000000) / 1000000;
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                             text.setText((long) result + "");
@@ -580,7 +589,11 @@ public class Calculator extends JFrame implements ActionListener{
                             text2.setText(c);
                         }
                         else{
-                            c=c+"<sqrt>";
+                            if (text2.getText().equals("0")) {
+                                c = text.getText() + "<sqrt>";
+                            } else {
+                                c += "<sqrt>";
+                            }
                             double roundA = (double) Math.round(b * 1000000) / 1000000;
                             if ((b == Math.floor(b)) && !Double.isInfinite(b)) {
                                 text.setText((long) b + "");
