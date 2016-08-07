@@ -246,6 +246,9 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 try {
+                    if ((text.getText().equals("0"))){
+                        c="0";
+                    }
                     char ch = e.getKeyChar();
                     if (ch == KeyEvent.VK_BACK_SPACE && text.getText().length() != 0) {
                         ce.setBorder(lowered);
