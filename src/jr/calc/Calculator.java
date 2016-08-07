@@ -246,7 +246,10 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 try {
-                    if ((text.getText().equals("0"))){
+                    if (text.getText().equals("0") && text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+                            && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+                            && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+                            && text2.getText().indexOf('/', text2.getText().length() - 1) == -1){
                         c="0";
                     }
                     char ch = e.getKeyChar();
@@ -263,7 +266,7 @@ public class Calculator extends JFrame implements ActionListener{
                             text2.setText(c);
                         }
                     }
-                    if (ch == KeyEvent.VK_ESCAPE && text.getText().length() != 0) {
+                    if (ch == KeyEvent.VK_ESCAPE) {
                         ce.setBorder(lowered);
                         c = "0";
                         text2.setText(c);
