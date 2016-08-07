@@ -631,7 +631,6 @@ public class Calculator extends JFrame implements ActionListener{
                             else {a = a / b;}
                         } else {
                             a = a + b;
-                            System.out.println(a);
                         }
                         double roundA = (double) Math.round(a * 1000000) / 1000000;
                         operator = 1;
