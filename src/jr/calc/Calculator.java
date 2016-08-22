@@ -254,7 +254,7 @@ public class Calculator extends JFrame implements ActionListener{
                     }
                     char ch = e.getKeyChar();
                     if (ch == KeyEvent.VK_BACK_SPACE && text.getText().length() != 0) {
-                        ce.setBorder(lowered);
+                        backspace.setBorder(lowered);
                         text.setText(text.getText().substring(0, text.getText().length() - 1));
                         c = text2.getText().substring(0, text2.getText().length() - 1);
                         if (text.getText().length() == 0 || text2.getText().length() == 0 || text.getText().equals("0") || text2.getText().equals("0") || text2.getText().indexOf('+', text2.getText().length() - 2) > 0
