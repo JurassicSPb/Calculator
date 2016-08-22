@@ -289,13 +289,13 @@ public class Calculator extends JFrame implements ActionListener{
                                     c += "+";
                                 }
                                 b = Double.parseDouble(text.getText());
-                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (a == 0) {
                                         a = Math.abs(a - b);
                                     } else a = a - b;
-                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a * b;
-                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (b==0){
                                         divideByZero();
                                     }
@@ -326,11 +326,11 @@ public class Calculator extends JFrame implements ActionListener{
                                     c += "-";
                                 }
                                 b = Double.parseDouble(text.getText());
-                                if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a + b;
-                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a * b;
-                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (b==0){
                                         divideByZero();
                                     }
@@ -369,13 +369,13 @@ public class Calculator extends JFrame implements ActionListener{
                                     c += "*";
                                 }
                                 b = Double.parseDouble(text.getText());
-                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (a == 0) {
                                         a = Math.abs(a - b);
                                     } else a = a - b;
-                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a + b;
-                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (b==0){
                                         divideByZero();
                                     }
@@ -412,13 +412,13 @@ public class Calculator extends JFrame implements ActionListener{
                                     c += "/";
                                 }
                                 b = Double.parseDouble(text.getText());
-                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     if (a == 0) {
                                         a = Math.abs(a - b);
                                     } else a = a - b;
-                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a + b;
-                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                                } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                                     a = a * b;
                                 } else {
                                     if (a == 0) {
@@ -790,13 +790,13 @@ public class Calculator extends JFrame implements ActionListener{
                             c += "+";
                         }
                         b = Double.parseDouble(text.getText());
-                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (a == 0) {
                                 a = Math.abs(a - b);
                             } else a = a - b;
-                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a * b;
-                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (b==0){
                                 divideByZero();
                             }
@@ -829,11 +829,11 @@ public class Calculator extends JFrame implements ActionListener{
                             c += "-";
                         }
                         b = Double.parseDouble(text.getText());
-                        if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a + b;
-                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a * b;
-                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (b==0){
                                 divideByZero();
                             }
@@ -873,13 +873,13 @@ public class Calculator extends JFrame implements ActionListener{
                             c += "*";
                         }
                         b = Double.parseDouble(text.getText());
-                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (a == 0) {
                                 a = Math.abs(a - b);
                             } else a = a - b;
-                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a + b;
-                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('/', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('/', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (b==0){
                                 divideByZero();
                             }
@@ -918,13 +918,13 @@ public class Calculator extends JFrame implements ActionListener{
                             c += "/";
                         }
                         b = Double.parseDouble(text.getText());
-                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        if (text2.getText().indexOf('-', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('-', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             if (a == 0) {
                                 a = Math.abs(a - b);
                             } else a = a - b;
-                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('+', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('+', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a + b;
-                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1) {
+                        } else if (text2.getText().indexOf('*', text2.getText().length() - 1 - text.getText().length()) != -1 || text2.getText().indexOf('*', text2.getText().length() - 8 - text.getText().length()) != -1) {
                             a = a * b;
                         } else {
                             if (a == 0) {
