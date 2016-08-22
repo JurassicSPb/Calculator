@@ -634,6 +634,7 @@ public class Calculator extends JFrame implements ActionListener{
                             } else {
                                 text.setText(text.getText() + str1);
                             }
+                            setEnterPointNull();
                         }
                     }
                     text2.setText(c + "");
@@ -1141,6 +1142,7 @@ public class Calculator extends JFrame implements ActionListener{
                         text.setText(text.getText() + str1);
                         panel.requestFocus();
                     }
+                    setEnterPointNull();
                 }
             }
             text2.setText(c + "");
@@ -1157,7 +1159,14 @@ public class Calculator extends JFrame implements ActionListener{
             text.setText("");
             enterFlag=0;
         }
-
+    }
+    public void setEnterPointNull(){
+        if (enterFlag==1){
+            text.setText("0");
+            c="0";
+            text2.setText(c);
+            enterFlag=0;
+        }
     }
     public void divideByZero(){
         result=0;
