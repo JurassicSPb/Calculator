@@ -627,6 +627,9 @@ public class Calculator extends JFrame implements ActionListener{
                             && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("*", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("/", text2.getText().length() - 1) ==-1) {
                             point.setBorder(lowered);
                                 if (text.getText().indexOf(str1) < 1) {
+                                    if (text2.getText().equals("0")){
+                                        c="0";
+                                    }
                                     c += ".";
                                 }
                                 if (text.getText().indexOf(str1) >= 1) {
@@ -1132,6 +1135,9 @@ public class Calculator extends JFrame implements ActionListener{
                 if (e.getSource().equals(point) && text.getText().length() != 0 && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1
                         && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("*", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("/", text2.getText().length() - 1) ==-1) {
                     if (text.getText().indexOf(str1) < 1) {
+                        if (text2.getText().equals("0")){
+                            c="0";
+                        }
                         c += ".";
                     }
                     if (text.getText().indexOf(str1) >= 1) {
