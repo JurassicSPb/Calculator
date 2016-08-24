@@ -284,7 +284,6 @@ public class Calculator extends JFrame implements ActionListener{
                             if (text.getText().length() != 0 && text2.getText().length() != 0) {
                                 if (text2.getText().equals("0")) {
                                     c = text.getText() + "+";
-
                                 } else {
                                     c += "+";
                                 }
@@ -624,18 +623,19 @@ public class Calculator extends JFrame implements ActionListener{
                             } else
                                 text.setText(text.getText() + "0");
                         }
-                        if (ch == KeyEvent.VK_PERIOD || ch == KeyEvent.VK_QUOTE && text.getText().length() != 0) {
+                        if (ch == KeyEvent.VK_PERIOD && text.getText().length() != 0 && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1
+                            && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("*", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("/", text2.getText().length() - 1) ==-1) {
                             point.setBorder(lowered);
-                            if (text.getText().indexOf(str1) < 1) {
-                                c += ".";
+                                if (text.getText().indexOf(str1) < 1) {
+                                    c += ".";
+                                }
+                                if (text.getText().indexOf(str1) >= 1) {
+                                    return;
+                                } else {
+                                    text.setText(text.getText() + str1);
+                                }
+                                setEnterPointNull();
                             }
-                            if (text.getText().indexOf(str1) >= 1) {
-                                return;
-                            } else {
-                                text.setText(text.getText() + str1);
-                            }
-                            setEnterPointNull();
-                        }
                     }
                     text2.setText(c + "");
                 } catch (NumberFormatException ex){}
@@ -786,7 +786,6 @@ public class Calculator extends JFrame implements ActionListener{
                     if (text.getText().length() != 0 && text2.getText().length() != 0) {
                         if (text2.getText().equals("0")) {
                             c = text.getText() + "+";
-
                         } else {
                             c += "+";
                         }
@@ -825,7 +824,6 @@ public class Calculator extends JFrame implements ActionListener{
                     if (text.getText().length() != 0 && text2.getText().length() != 0) {
                         if (text2.getText().equals("0")) {
                             c = text.getText() + "-";
-
                         } else {
                             c += "-";
                         }
@@ -1131,7 +1129,8 @@ public class Calculator extends JFrame implements ActionListener{
                         text.setText(text.getText() + "0");
                     panel.requestFocus();
                 }
-                if (e.getSource().equals(point) && text.getText().length() != 0) {
+                if (e.getSource().equals(point) && text.getText().length() != 0 && text2.getText().indexOf("+", text2.getText().length() - 1) ==-1
+                        && text2.getText().indexOf("-", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("*", text2.getText().length() - 1) ==-1 && text2.getText().indexOf("/", text2.getText().length() - 1) ==-1) {
                     if (text.getText().indexOf(str1) < 1) {
                         c += ".";
                     }
@@ -1146,6 +1145,7 @@ public class Calculator extends JFrame implements ActionListener{
                 }
             }
             text2.setText(c + "");
+            panel.requestFocus();
         } catch (NumberFormatException ex){}
     }
     public void setNull() {
