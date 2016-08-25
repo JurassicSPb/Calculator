@@ -400,6 +400,7 @@ public class Calculator extends JFrame implements ActionListener{
                         }
                     }
                     if (ch == '/'){
+                        division.setBorder(lowered);
                         if (text2.getText().indexOf('+', text2.getText().length() - 1) == -1
                                 && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
                                 && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
