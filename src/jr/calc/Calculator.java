@@ -246,12 +246,12 @@ public class Calculator extends JFrame implements ActionListener{
             @Override
             public void keyTyped(KeyEvent e) {
                 try {
-                    if (text.getText().equals("0") && text2.getText().indexOf('+', text2.getText().length() - 1) == -1
-                            && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
-                            && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
-                            && text2.getText().indexOf('/', text2.getText().length() - 1) == -1){
-                        c="0";
-                    }
+//                    if (text.getText().equals("0") && text2.getText().indexOf('+', text2.getText().length() - 1) == -1
+//                            && text2.getText().indexOf('-', text2.getText().length() - 1) == -1
+//                            && text2.getText().indexOf('*', text2.getText().length() - 1) == -1
+//                            && text2.getText().indexOf('/', text2.getText().length() - 1) == -1){
+//                        c="0";
+//                    }
                     char ch = e.getKeyChar();
                     if (ch == KeyEvent.VK_BACK_SPACE && text.getText().length() != 0) {
                         backspace.setBorder(lowered);
