@@ -7,6 +7,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  * Created by spbw0-rep6 on 25.07.2016.
@@ -302,13 +304,13 @@ public class Calculator extends JFrame implements ActionListener{
                                 } else {
                                     a = a + b;
                                 }
-                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                                 operator = 1;
                                 operatorEnter = 1;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                     text.setText((long) a + "");
                                 } else
-                                    text.setText(roundA + "");
+                                    text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                             }
                         }
                     }
@@ -344,13 +346,13 @@ public class Calculator extends JFrame implements ActionListener{
                                         a = a - b;
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                                 operator = 2;
                                 operatorEnter = 2;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                     text.setText((long) a + "");
                                 } else
-                                    text.setText(roundA + "");
+                                    text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                             }
                         }
                     }
@@ -389,13 +391,13 @@ public class Calculator extends JFrame implements ActionListener{
                                         a = a * b;
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                                 operator = 3;
                                 operatorEnter = 3;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                     text.setText((long) a + "");
                                 } else
-                                    text.setText(roundA + "");
+                                    text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                             }
                         }
                     }
@@ -433,13 +435,13 @@ public class Calculator extends JFrame implements ActionListener{
                                         else {a = a / b;}
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000) / 1000000;
+                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                                 operator = 4;
                                 operatorEnter = 4;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                                     text.setText((long) a + "");
                                 } else
-                                    text.setText(roundA + "");
+                                    text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                             }
                         }
                     }
@@ -468,12 +470,11 @@ public class Calculator extends JFrame implements ActionListener{
                                 default:
                                     result = 0;
                             }
-                            double roundResult = (double) Math.round(result * 1000000) / 1000000;
+                            double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
                             if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                                 text.setText((long) result + "");
-
                             } else {
-                                text.setText(roundResult + "");
+                                text.setText(BigDecimal.valueOf(roundResult).toPlainString() + "");
                             }
                         }
                         a = 0;
@@ -741,11 +742,11 @@ public class Calculator extends JFrame implements ActionListener{
                         } else {
                             c += "%";
                         }
-                        double roundA = (double) Math.round(result * 1000000) / 1000000;
+                        double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                             text.setText((long) result + "");
                         } else
-                            text.setText(roundA + "");
+                            text.setText(BigDecimal.valueOf(roundResult).toPlainString() + "");
                     }
                     panel.requestFocus();
                 }
@@ -771,11 +772,11 @@ public class Calculator extends JFrame implements ActionListener{
                             } else {
                                 c += "<sqrt>";
                             }
-                            double roundA = (double) Math.round(b * 1000000) / 1000000;
+                            double roundB = (double) Math.round(b * 1000000000) / 1000000000;
                             if ((b == Math.floor(b)) && !Double.isInfinite(b)) {
                                 text.setText((long) b + "");
                             }
-                            else {text.setText(roundA + "");}
+                            else text.setText(BigDecimal.valueOf(roundB).toPlainString() + "");
                         }
                         }
                     panel.requestFocus();
@@ -808,13 +809,13 @@ public class Calculator extends JFrame implements ActionListener{
                         } else {
                             a = a + b;
                         }
-                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                         operator = 1;
                         operatorEnter = 1;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                             text.setText((long) a + "");
                         } else
-                            text.setText(roundA + "");
+                            text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                     }
                     panel.requestFocus();
                 }
@@ -851,13 +852,13 @@ public class Calculator extends JFrame implements ActionListener{
                                 a = a - b;
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                         operator = 2;
                         operatorEnter = 2;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                             text.setText((long) a + "");
                         } else
-                            text.setText(roundA + "");
+                            text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                     }
                     panel.requestFocus();
                 }
@@ -897,13 +898,13 @@ public class Calculator extends JFrame implements ActionListener{
                                 a = a * b;
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                         operator = 3;
                         operatorEnter = 3;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                             text.setText((long) a + "");
                         } else
-                            text.setText(roundA + "");
+                            text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                     }
                     panel.requestFocus();
                 }
@@ -942,13 +943,13 @@ public class Calculator extends JFrame implements ActionListener{
                                 else {a = a / b;}
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000) / 1000000;
+                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
                         operator = 4;
                         operatorEnter = 4;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                             text.setText((long) a + "");
                         } else
-                            text.setText(roundA + "");
+                            text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                     }
                     panel.requestFocus();
                 }
@@ -977,12 +978,12 @@ public class Calculator extends JFrame implements ActionListener{
                         default:
                             result = 0;
                     }
-                    double roundResult = (double) Math.round(result * 1000000) / 1000000;
+                    double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
                     if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                         text.setText((long) result + "");
 
                     } else {
-                        text.setText(roundResult + "");
+                        text.setText(BigDecimal.valueOf(roundResult).toPlainString() + "");
                     }
                 }
                 a = 0;
