@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 
 /**
  * Created by spbw0-rep6 on 25.07.2016.
@@ -731,10 +732,10 @@ public class Calculator extends JFrame implements ActionListener{
             if (e.getSource().equals(percent)) {
                 panel.requestFocus();
                 if (text.getText().length() != 0 && text2.getText().length() != 0) {
-                    if ((text.getText().equals("0"))){
+                    if ((text.getText().equals("0")) || (text2.getText().equals("0")) ){
                         c="0";
                     }
-                    if (!(text.getText().equals("0"))) {
+                    else if (!(text.getText().equals("0"))) {
                         b = Double.parseDouble(text.getText());
                         result = (a * b) / 100;
                         if (text2.getText().equals("0")) {
@@ -814,6 +815,7 @@ public class Calculator extends JFrame implements ActionListener{
                         operatorEnter = 1;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
                             text.setText((long) a + "");
+                            System.out.println(a);
                         } else
                             text.setText(BigDecimal.valueOf(roundA).toPlainString() + "");
                     }
