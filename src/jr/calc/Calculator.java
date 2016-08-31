@@ -306,7 +306,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 } else {
                                     a = a + b;
                                 }
-                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                                double roundA = (a * 1000000000000l) / 1000000000000l;
                                 operator = 1;
                                 operatorEnter = 1;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -348,7 +348,7 @@ public class Calculator extends JFrame implements ActionListener{
                                         a = a - b;
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                                double roundA = (a * 1000000000000l) / 1000000000000l;
                                 operator = 2;
                                 operatorEnter = 2;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -393,7 +393,7 @@ public class Calculator extends JFrame implements ActionListener{
                                         a = a * b;
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                                double roundA = (a * 1000000000000l) / 1000000000000l;
                                 operator = 3;
                                 operatorEnter = 3;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -437,7 +437,7 @@ public class Calculator extends JFrame implements ActionListener{
                                         else {a = a / b;}
                                     }
                                 }
-                                double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                                double roundA = (a * 1000000000000l) / 1000000000000l;
                                 operator = 4;
                                 operatorEnter = 4;
                                 if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -472,7 +472,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 default:
                                     result = 0;
                             }
-                            double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
+                            double roundResult = (result * 1000000000000l) / 1000000000000l;
                             if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                                 text.setText((long) result + "");
                             } else {
@@ -744,7 +744,7 @@ public class Calculator extends JFrame implements ActionListener{
                         } else {
                             c += "%";
                         }
-                        double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
+                        double roundResult = (result * 1000000000000l) / 1000000000000l;
                         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                             text.setText((long) result + "");
                         } else
@@ -774,7 +774,7 @@ public class Calculator extends JFrame implements ActionListener{
                             } else {
                                 c += "<sqrt>";
                             }
-                            double roundB = (double) Math.round(b * 1000000000) / 1000000000;
+                            double roundB = (b * 1000000000000l) / 1000000000000l;
                             if ((b == Math.floor(b)) && !Double.isInfinite(b)) {
                                 text.setText((long) b + "");
                             }
@@ -811,7 +811,7 @@ public class Calculator extends JFrame implements ActionListener{
                         } else {
                             a = a + b;
                         }
-                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                        double roundA = (a * 1000000000000l) / 1000000000000l;
                         operator = 1;
                         operatorEnter = 1;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -855,7 +855,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 a = a - b;
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                        double roundA = (a * 1000000000000l) / 1000000000000l;
                         operator = 2;
                         operatorEnter = 2;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -901,7 +901,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 a = a * b;
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                        double roundA = (a * 1000000000000l) / 1000000000000l;
                         operator = 3;
                         operatorEnter = 3;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -946,7 +946,7 @@ public class Calculator extends JFrame implements ActionListener{
                                 else {a = a / b;}
                             }
                         }
-                        double roundA = (double) Math.round(a * 1000000000) / 1000000000;
+                        double roundA = (a * 1000000000000l) / 1000000000000l;
                         operator = 4;
                         operatorEnter = 4;
                         if ((a == Math.floor(a)) && !Double.isInfinite(a)) {
@@ -981,7 +981,7 @@ public class Calculator extends JFrame implements ActionListener{
                         default:
                             result = 0;
                     }
-                    double roundResult = (double) Math.round(result * 1000000000) / 1000000000;
+                    double roundResult = (result * 1000000000000l) / 1000000000000l;
                     if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
                         text.setText((long) result + "");
 
